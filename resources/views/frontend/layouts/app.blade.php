@@ -40,25 +40,23 @@
 									<li>
 										<a href="#">English<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li><a href="#">Italian</a></li>
-											<li><a href="#">Spanish</a></li>
-											<li><a href="#">Japanese</a></li>
+											<li><a href="#">English</a></li>
+											<li><a href="#">Bangla</a></li>
 										</ul>
 									</li>
 									<li>
 										<a href="#">$ US dollar<i class="fas fa-chevron-down"></i></a>
 										<ul>
-											<li><a href="#">EUR Euro</a></li>
-											<li><a href="#">GBP British Pound</a></li>
-											<li><a href="#">JPY Japanese Yen</a></li>
+											<li><a href="#">English</a></li>
+											<li><a href="#">Bangla</a></li>
 										</ul>
 									</li>
 								</ul>
 							</div>
 							<div class="top_bar_user">
 								<div class="user_icon"><img src="{{ asset ('frontend/images/user.svg')}}" alt=""></div>
-								<div><a href="#">Register</a></div>
-								<div><a href="#">Sign in</a></div>
+								<div><a href="{{ route('register') }}">Register</a></div>
+								<div><a href="{{ route('login') }}">Sign in</a></div>
 							</div>
 						</div>
 					</div>
