@@ -7,9 +7,12 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    //
+
     public function supper_admin()
     {
-        return view('backend.layouts.main');
+        if (Auth()->user()->is_admin == 1) {
+            return view('backend.layouts.main');
+        }
+        return view('frontend.layouts.app');
     }
 }
