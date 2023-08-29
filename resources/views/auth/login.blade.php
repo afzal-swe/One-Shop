@@ -1,33 +1,10 @@
-{{-- <x-guest-layout>
-   
-    
-
-   
-
-        
-       
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout> --}}
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>1shot Apparend</title>
+  <title>1Shot Apparel</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -43,10 +20,10 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>1Shot</b> Apparend</a>
+      <a href="{{ url('/') }}" class="h1"><b>1Shot</b> Apparel</a>
     </div>
     <div class="card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">User Login Panel !!</p>
 
       <form method="POST" action="{{ route('login') }}">
         @csrf
@@ -57,6 +34,8 @@
               <span class="fas fa-envelope"></span>
             </div>
           </div>
+
+          
         </div>
 
         <div class="input-group mb-3">
