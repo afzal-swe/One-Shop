@@ -96,3 +96,9 @@ What topics we learn from here. just look at this list
 -Full API development for mobile apps with passport and sanctum
 -and many more
 -socialite
+
+## Use this Package :
+
+1. https://larainfo.com/blogs/laravel-9-shopping-add-to-cart-tutorial-example
+2. https://image.intervention.io/v2
+3. https://yajrabox.com/docs/laravel-datatables/master/installation
