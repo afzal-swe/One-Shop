@@ -9,6 +9,8 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ChildCategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\SeoController;
+
 
 
 /*
@@ -63,5 +65,10 @@ Route::post('/add/sub-category', [SubCategoryController::class, 'store'])->name(
 Route::get('/edit/sub-category/{id}', [SubCategoryController::class, 'edit'])->name('subcategory.edit')->middleware(['auth', 'verified']);
 Route::post('/update/sub-category/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update')->middleware(['auth', 'verified']);
 Route::get('/sub-category/delete/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.destroy')->middleware(['auth', 'verified']);
+
+
+// SEO Route Section Start ===========================================================
+Route::get('/seo', [SeoController::class, 'create'])->name('seo.create')->middleware(['auth', 'verified']);
+Route::post('/seo/store', [SeoController::class, 'store'])->name('seo.store')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';
