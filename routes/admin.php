@@ -38,11 +38,15 @@ Route::get('/admin/login', [AdminController::class, 'supper_admin'])->middleware
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-
-Route::get('/brands', [BrandController::class, 'index'])->name('brand.index')->middleware(['auth', 'verified']);
+// Brand Route Section Start ==============================================================
+Route::get('/all/brands', [BrandController::class, 'index'])->name('brand.index')->middleware(['auth', 'verified']);
 Route::post('/add/brand', [BrandController::class, 'store'])->name('brand.store')->middleware(['auth', 'verified']);
 Route::get('/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit')->middleware(['auth', 'verified']);
 Route::post('/brand/update/{id}', [BrandController::class, 'update'])->name('brand.update')->middleware(['auth', 'verified']);
 Route::get('/brand/delete/{id}', [BrandController::class, 'destroy'])->name('brand.destroy')->middleware(['auth', 'verified']);
+
+
+// Category Route Section Start ===========================================================
+Route::get('/all/category', [CategoryController::class, 'index'])->name('category.index')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';

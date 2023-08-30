@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('brand_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
             $table->string('category_name')->nullable();
             $table->string('category_slug')->nullable();
+            $table->string('category_status')->nullable();
             $table->timestamps();
         });
     }
