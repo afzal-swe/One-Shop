@@ -40,4 +40,13 @@ class CategoryController extends Controller
         $notification = array('messege' => 'Category Update Successfully', 'alert-type' => 'success');
         return redirect()->route('category.index')->with($notification);
     }
+
+    public function destroy($id)
+    {
+
+        Category::findOrFail($id)->delete();
+
+        $notification = array('messege' => 'Category Delete Successfully', 'alert-type' => 'success');
+        return redirect()->route('category.index')->with($notification);
+    }
 }

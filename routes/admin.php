@@ -50,5 +50,6 @@ Route::get('/brand/delete/{id}', [BrandController::class, 'destroy'])->name('bra
 Route::get('/all/category', [CategoryController::class, 'index'])->name('category.index')->middleware(['auth', 'verified']);
 Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit')->middleware(['auth', 'verified']);
 Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update')->middleware(['auth', 'verified']);
+Route::get('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';
