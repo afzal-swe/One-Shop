@@ -42,4 +42,37 @@ class SubCategoryController extends Controller
         $notification = array('messege' => 'SubCategory Added Successfully', 'alert-type' => 'success');
         return redirect()->route('subcategory.index')->with($notification);
     }
+
+    public function edit($id)
+    {
+        $brand = Brand::all();
+        $category = Category::all();
+        $edit = SubCategory::find($id);
+
+        return view('backend.subcategory.edit', compact('brand', 'category', 'edit'));
+    }
+
+    public function update(Request $request)
+    {
+        $update = $request->id;
+
+        SubCategory::findOrFail($update)->update([
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'subcategory_name' => $request->subcategory_name,
+            'subcategory_slug' => Str::of($request->subcategory_name)->slug('-'),
+            'updated_at' => Carbon::now(),
+        ]);
+        $notification = array('messege' => 'SubCategory Update Successfully', 'alert-type' => 'success');
+        return redirect()->route('subcategory.index')->with($notification);
+    }
+
+    public function destroy($id)
+    {
+
+        SubCategory::findOrFail($id)->delete();
+
+        $notification = array('messege' => 'SubCategory Delete Successfully', 'alert-type' => 'success');
+        return redirect()->back()->with($notification);
+    }
 }
