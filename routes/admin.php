@@ -43,5 +43,6 @@ Route::get('/brands', [BrandController::class, 'index'])->name('brand.index')->m
 Route::post('/add/brand', [BrandController::class, 'store'])->name('brand.store')->middleware(['auth', 'verified']);
 Route::get('/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit')->middleware(['auth', 'verified']);
 Route::post('/brand/update/{id}', [BrandController::class, 'update'])->name('brand.update')->middleware(['auth', 'verified']);
+Route::get('/brand/delete/{id}', [BrandController::class, 'destroy'])->name('brand.destroy')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';

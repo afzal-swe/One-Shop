@@ -48,4 +48,13 @@ class BrandController extends Controller
         $notification = array('messege' => 'Brand Update Successfully', 'alert-type' => 'success');
         return redirect()->route('brand.index')->with($notification);
     }
+
+    public function destroy($id)
+    {
+
+        Brand::findOrFail($id)->delete();
+
+        $notification = array('messege' => 'Brand Delete Successfully', 'alert-type' => 'success');
+        return redirect()->route('brand.index')->with($notification);
+    }
 }
