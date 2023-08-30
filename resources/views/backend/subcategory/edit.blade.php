@@ -36,9 +36,9 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                   <h4 class="modal-title">Update Sub Category</h4>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <a href="{{ route('category.index') }}" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
-                                  </button>
+                                  </a>
                                 </div>
                                 <div class="modal-body">
                                     <form action="{{ route('subcategory.update',$edit->id) }}" method="post" enctype="multipart/form-data">
