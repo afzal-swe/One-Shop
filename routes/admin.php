@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\SubCategoryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -52,5 +55,9 @@ Route::post('/category/store', [CategoryController::class, 'store'])->name('cate
 Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit')->middleware(['auth', 'verified']);
 Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update')->middleware(['auth', 'verified']);
 Route::get('/category/delete/{id}', [CategoryController::class, 'destroy'])->name('category.destroy')->middleware(['auth', 'verified']);
+
+
+// Sub Category Route Section Start ===========================================================
+Route::get('/all/sub-category', [SubCategoryController::class, 'index'])->name('subcategory.index')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';
