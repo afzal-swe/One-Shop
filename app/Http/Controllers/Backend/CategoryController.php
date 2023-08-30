@@ -19,6 +19,24 @@ class CategoryController extends Controller
         return view('backend.category.index', compact('category', 'brand'));
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'brand_id' => 'required',
+            'category_name' => 'required',
+        ]);
+
+        Category::insert([
+            'brand_id' => $request->brand_id,
+            'category_name' => $request->category_name,
+            'category_status' => $request->category_status,
+            'category_slug' => Str::of($request->category_name)->slug('-'),
+            'created_at' => Carbon::now(),
+        ]);
+        $notification = array('messege' => 'Category Added Successfully', 'alert-type' => 'success');
+        return redirect()->route('category.index')->with($notification);
+    }
+
     public function edit($id)
     {
         $brand = Brand::all();
@@ -34,7 +52,7 @@ class CategoryController extends Controller
             'brand_id' => $request->brand_id,
             'category_name' => $request->category_name,
             'category_slug' => Str::of($request->category_name)->slug('-'),
-            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
 
         ]);
         $notification = array('messege' => 'Category Update Successfully', 'alert-type' => 'success');

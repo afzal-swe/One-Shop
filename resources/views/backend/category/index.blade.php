@@ -88,21 +88,26 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Insert New Brand</h4>
+              <h4 class="modal-title">Insert New Category</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="card-body">
 
                         <div class="form-group">
                             <label for="">Brand Name <span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control @error('name') is-invalid @enderror " placeholder="Brand Name" value="{{old('name')}}" required>
-                            @error('name')
+                            <select name="brand_id" id="" class="form-control  @error('brand_id') is-invalid @enderror ">
+                              <option value="" selected disabled>Choose Brand</option>
+                                @foreach ($brand as $row)
+                                <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('brand_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -110,12 +115,22 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Brand Image <span class="text-danger">*</span></label>
+                            <label for="">Category Name <span class="text-danger">*</span></label>
+                            <input type="text" name="category_name" class="form-control  @error('brand_id') is-invalid @enderror" placeholder="Category Name" value="{{old('category_name')}}" required>
+                            @error('category_name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Category Image <span class="text-danger">*</span></label>
                             <input type="file" name="image" class="form-control">
                             
                         </div>
    
-                        <input type="checkbox" name="status" value="1"><span> Publication</span><br>
+                        <input type="checkbox" name="category_status" value="1"><span> Publication</span><br>
                            
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
