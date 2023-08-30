@@ -14,5 +14,7 @@ class AdminController extends Controller
             return view('backend.layouts.main');
         }
         return view('frontend.layouts.app');
+
+        $notification = array('message' => 'Login Successfully', 'alert-type' => 'success');
     }
 }

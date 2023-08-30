@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 // Backend Controller Section //
 use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +31,15 @@ use App\Http\Controllers\Backend\AdminController;
 
 Route::get('/admin/login', [AdminController::class, 'supper_admin'])->middleware(['auth', 'verified'])->name('dashboard');
 
+
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
+
+
+Route::get('/brands', [BrandController::class, 'index'])->name('brand.index')->middleware(['auth', 'verified']);
+Route::post('/add/brand', [BrandController::class, 'store'])->name('brand.store')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';
