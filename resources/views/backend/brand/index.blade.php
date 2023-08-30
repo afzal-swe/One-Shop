@@ -51,14 +51,26 @@
                                         <td>{{++$key}}</td>
                                         <td><img src="{{ asset($row->image) }}" style="height: 60px; width:60px"></td>
                                         <td>{{ $row->name }}</td>
-                                        <td>{{ $row->status }}</td>
                                         <td>
-                                            <a href="#" class="btn btn-info sm" title="Edit Data"><i class="fas fa-edit"></i></a>
+                                            @if ($row->status == '1')
+                                            <span class="btn btn-success">Active</span>
+                                            @else
+                                            <span class="btn btn-danger">Inactive</span>
+                                            @endif
+                                        </td>
+                                        <td >
+                                            @if ($row->status == '1')
+                                                <a href="#"><i class="fa-solid fa-toggle-on fa-xl" title="Unactive"></i></a>
+                                            @else
+                                                <a href="#"><i class="fa-solid fa-toggle-on"></i></a>
+                                                {{-- <a href="#"><i class="fa-solid fa-toggle-off fa-xl" title="Active"></i></a> --}}
+                                            @endif
+                                            <a href="{{ route('brand.edit',$row->id) }}" class="btn btn-info sm" title="Edit Data"><i class="fas fa-edit"></i></a>
                                             <a href="#" id="delete" class="btn btn-danger sm delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
-                                
+
                             </tbody>
                           </table>
                         </div>

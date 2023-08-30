@@ -32,4 +32,20 @@ class BrandController extends Controller
         $notification = array('messege' => 'Brand Insert Successfully', 'alert-type' => 'success');
         return redirect()->back()->with($notification);
     }
+
+    public function edit($id)
+    {
+        $edit = Brand::find($id);
+        return view('backend.brand.edit', compact('edit'));
+    }
+
+    public function update(Request $request)
+    {
+        $update = $request->id;
+        Brand::findOrFail($update)->update([
+            'name' => $request->name,
+        ]);
+        $notification = array('messege' => 'Brand Update Successfully', 'alert-type' => 'success');
+        return redirect()->route('brand.index')->with($notification);
+    }
 }

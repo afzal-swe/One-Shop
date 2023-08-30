@@ -41,5 +41,7 @@ Route::get('/admin/login', [AdminController::class, 'supper_admin'])->middleware
 
 Route::get('/brands', [BrandController::class, 'index'])->name('brand.index')->middleware(['auth', 'verified']);
 Route::post('/add/brand', [BrandController::class, 'store'])->name('brand.store')->middleware(['auth', 'verified']);
+Route::get('/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit')->middleware(['auth', 'verified']);
+Route::post('/brand/update/{id}', [BrandController::class, 'update'])->name('brand.update')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';
