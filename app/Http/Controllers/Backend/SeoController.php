@@ -45,4 +45,21 @@ class SeoController extends Controller
         $notification = array('messege' => 'SEO Insert Successfully !!', 'alert-type' => "success");
         return redirect()->back()->with($notification);
     }
+
+    public function update(Request $request)
+    {
+        $update = $request->id;
+
+        Seo::findOrFail($update)->update([
+            'meta_author' => $request->meta_author,
+            'meta_title' => $request->meta_title,
+            'meta_keyword' => $request->meta_keyword,
+            'meta_description' => $request->meta_description,
+            'google_analytics' => $request->google_analytics,
+            'google_verification' => $request->google_verification,
+            'alexa_analytics' => $request->alexa_analytics,
+        ]);
+        $notification = array('messege' => 'SEO Update Successfully !!', 'alert-type' => "success");
+        return redirect()->back()->with($notification);
+    }
 }

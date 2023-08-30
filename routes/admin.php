@@ -70,5 +70,6 @@ Route::get('/sub-category/delete/{id}', [SubCategoryController::class, 'destroy'
 // SEO Route Section Start ===========================================================
 Route::get('/seo', [SeoController::class, 'create'])->name('seo.create')->middleware(['auth', 'verified']);
 Route::post('/seo/store', [SeoController::class, 'store'])->name('seo.store')->middleware(['auth', 'verified']);
+Route::post('/seo/update/{id}', [SeoController::class, 'update'])->name('seo.update')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';
