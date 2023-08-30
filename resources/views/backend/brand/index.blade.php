@@ -49,7 +49,7 @@
                                 @foreach ($brand as $key=>$row)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td><img src="{{ asset($row->image) }}" style="height: 60px; width:60px"></td>
+                                        <td><img src="{{ asset($row->image) }}" style="height: 40px; width:60px"></td>
                                         <td>{{ $row->name }}</td>
                                         <td>
                                             @if ($row->status == '1')

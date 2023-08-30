@@ -50,7 +50,7 @@
                                 @foreach ($category as $key=>$row)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        <td><img src="{{ asset($row->image) }}" style="height: 60px; width:60px"></td>
+                                        <td><img src="{{ asset($row->image) }}" style="height: 40px; width:60px"></td>
                                         <td>{{ $row->brand->name }}</td>
                                         <td>{{ $row->category_name }}</td>
                                         <td>
@@ -67,7 +67,7 @@
                                                 <a href="#"><i class="fa-solid fa-toggle-on"></i></a>
                                                 {{-- <a href="#"><i class="fa-solid fa-toggle-off fa-xl" title="Active"></i></a> --}}
                                             @endif
-                                            <a href="#" class="btn btn-info sm" title="Edit Data"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ route('category.edit',$row->id) }}" class="btn btn-info sm" title="Edit Data"><i class="fas fa-edit"></i></a>
                                             <a href="#" id="delete" class="btn btn-danger sm delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>
                                         </td>
                                     </tr>
