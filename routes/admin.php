@@ -66,10 +66,6 @@ Route::get('/edit/sub-category/{id}', [SubCategoryController::class, 'edit'])->n
 Route::post('/update/sub-category/{id}', [SubCategoryController::class, 'update'])->name('subcategory.update')->middleware(['auth', 'verified']);
 Route::get('/sub-category/delete/{id}', [SubCategoryController::class, 'destroy'])->name('subcategory.destroy')->middleware(['auth', 'verified']);
 
-// Child Category Route Section Start ===========================================================
-Route::get('/all/child-category', [ChildCategoryController::class, 'index'])->name('childcategory.index')->middleware(['auth', 'verified']);
-
-
 // SEO Route Section Start ===========================================================
 Route::get('/seo', [SeoController::class, 'create'])->name('seo.create')->middleware(['auth', 'verified']);
 Route::post('/seo/store', [SeoController::class, 'store'])->name('seo.store')->middleware(['auth', 'verified']);
