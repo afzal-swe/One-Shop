@@ -89,25 +89,25 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Insert New Category</h4>
+              <h4 class="modal-title">Insert Sub Category</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="{{ route('subcategory.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
 
                     <div class="card-body">
 
                         <div class="form-group">
                             <label for="">Brand Name <span class="text-danger">*</span></label>
-                            {{-- <select name="brand_id" id="" class="form-control  @error('brand_id') is-invalid @enderror ">
+                            <select name="brand_id" id="" class="form-control  @error('brand_id') is-invalid @enderror ">
                               <option value="" selected disabled>Choose Brand</option>
                                 @foreach ($brand as $row)
                                 <option value="{{ $row->id }}">{{ $row->name }}</option>
                                 @endforeach
-                            </select> --}}
+                            </select>
                             @error('brand_id')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -117,8 +117,23 @@
 
                         <div class="form-group">
                             <label for="">Category Name <span class="text-danger">*</span></label>
-                            <input type="text" name="category_name" class="form-control  @error('brand_id') is-invalid @enderror" placeholder="Category Name" value="{{old('category_name')}}" required>
-                            @error('category_name')
+                            <select name="category_id" id="" class="form-control  @error('category_id') is-invalid @enderror ">
+                              <option value="" selected disabled>Choose Category</option>
+                                @foreach ($category as $row)
+                                <option value="{{ $row->id }}">{{ $row->category_name }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Sub Category Name <span class="text-danger">*</span></label>
+                            <input type="text" name="subcategory_name" class="form-control  @error('subcategory_name') is-invalid @enderror" placeholder="Sub Category Name" value="{{old('subcategory_name')}}" required>
+                            @error('subcategory_name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -131,7 +146,7 @@
                             
                         </div>
    
-                        <input type="checkbox" name="category_status" value="1"><span> Publication</span><br>
+                        <input type="checkbox" name="subcategory_status" value="1"><span> Publication</span><br>
                            
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
-use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 
@@ -14,7 +16,30 @@ class SubCategoryController extends Controller
     //
     public function index()
     {
-        $sub_category = SubCategory::all();
-        return view('backend.subcategory.index', compact('sub_category'));
+        $brand = Brand::all();
+        $category = Category::all();
+        $sub_category = SubCategory::orderBy('id', 'DESC')->get();
+        return view('backend.subcategory.index', compact('sub_category', 'brand', 'category'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'brand_id' => 'required',
+            'category_id' => 'required',
+            'subcategory_name' => 'required',
+
+        ]);
+
+        SubCategory::insert([
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'subcategory_name' => $request->subcategory_name,
+            'subcategory_slug' => Str::of($request->subcategory_name)->slug('-'),
+            'subcategory_status' => $request->subcategory_status,
+            'created_at' => Carbon::now(),
+        ]);
+        $notification = array('messege' => 'SubCategory Added Successfully', 'alert-type' => 'success');
+        return redirect()->route('subcategory.index')->with($notification);
     }
 }

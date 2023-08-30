@@ -59,5 +59,6 @@ Route::get('/category/delete/{id}', [CategoryController::class, 'destroy'])->nam
 
 // Sub Category Route Section Start ===========================================================
 Route::get('/all/sub-category', [SubCategoryController::class, 'index'])->name('subcategory.index')->middleware(['auth', 'verified']);
+Route::post('/add/sub-category', [SubCategoryController::class, 'store'])->name('subcategory.store')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';
