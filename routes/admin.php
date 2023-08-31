@@ -90,6 +90,6 @@ Route::post('/smtp/update/{id}', [SmtpController::class, 'update'])->name('smtp.
 Route::get('/page/management', [PageController::class, 'index'])->name('page.index')->middleware(['auth', 'verified']);
 Route::get('/page/create', [PageController::class, 'create'])->name('page.create')->middleware(['auth', 'verified']);
 Route::post('/page/store', [PageController::class, 'store'])->name('page.store')->middleware(['auth', 'verified']);
-// Route::post('/smtp/update/{id}', [SmtpController::class, 'update'])->name('smtp.update')->middleware(['auth', 'verified']);
+Route::get('/page/delete/{id}', [PageController::class, 'destroy'])->name('page.destroy')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';

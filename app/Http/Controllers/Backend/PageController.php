@@ -43,4 +43,13 @@ class PageController extends Controller
         $notification = array('messege' => 'Create a New Page !!', 'alert-type' => "success");
         return redirect()->back()->with($notification);
     }
+
+    public function destroy($id)
+    {
+
+        Page::findOrFail($id)->delete();
+
+        $notification = array('messege' => 'Page Delete Successfully !!', 'alert-type' => "success");
+        return redirect()->back()->with($notification);
+    }
 }
