@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SeoController;
 use App\Http\Controllers\Backend\SmtpController;
 use App\Http\Controllers\Backend\PageController;
+use App\Http\Controllers\Backend\WebsiteSettingController;
 
 
 
@@ -93,5 +94,11 @@ Route::post('/page/store', [PageController::class, 'store'])->name('page.store')
 Route::get('/page/edit/{id}', [PageController::class, 'edit'])->name('page.edit')->middleware(['auth', 'verified']);
 Route::post('/page/update/{id}', [PageController::class, 'update'])->name('page.update')->middleware(['auth', 'verified']);
 Route::get('/page/delete/{id}', [PageController::class, 'destroy'])->name('page.destroy')->middleware(['auth', 'verified']);
+
+
+// Web Site Setting Route Section Start ===========================================================
+Route::get('/website/info', [WebsiteSettingController::class, 'create'])->name('website.setting.create')->middleware(['auth', 'verified']);
+Route::post('/website/info/store', [WebsiteSettingController::class, 'store'])->name('website.setting.store')->middleware(['auth', 'verified']);
+
 
 // require __DIR__ . '/auth.php';
