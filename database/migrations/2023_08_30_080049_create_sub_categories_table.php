@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('subcategory_name')->nullable();
             $table->string('subcategory_slug')->nullable();
             $table->string('subcategory_status')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

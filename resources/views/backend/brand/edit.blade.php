@@ -36,9 +36,10 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                   <h4 class="modal-title">Update Brand</h4>
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <a href="{{ route('brand.index') }}" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    
                                     <span aria-hidden="true">&times;</span>
-                                  </button>
+                                  </a>
                                 </div>
                                 <div class="modal-body">
                                     <form action="{{ route('brand.update',$edit->id) }}" method="post" enctype="multipart/form-data">
@@ -53,7 +54,7 @@
                     
                                             <div class="form-group">
                                                 <label for="">Brand Image</label>
-                                                <input type="file" name="category_en" class="form-control" >
+                                                <input type="file" name="image" class="form-control" >
                                             </div>
         
                                             <div class="card-footer">
