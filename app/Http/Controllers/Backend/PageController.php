@@ -41,7 +41,29 @@ class PageController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $notification = array('messege' => 'Create a New Page !!', 'alert-type' => "success");
-        return redirect()->back()->with($notification);
+        return redirect()->route('page.index')->with($notification);
+    }
+
+    public function edit($id)
+    {
+        $edit = Page::findOrFail($id);
+        return view('backend.setting.page.edit', compact('edit'));
+    }
+
+    public function update(Request $request)
+    {
+        $update = $request->id;
+
+        Page::findOrFail($update)->update([
+            'page_position' => $request->page_position,
+            'page_name' => $request->page_name,
+            'page_title' => $request->page_title,
+            'page_description' => $request->page_description,
+            'page_slug' => Str::of($request->page_title)->slug('-'),
+            'updated_at' => Carbon::now(),
+        ]);
+        $notification = array('messege' => 'Page Update Successfully !!', 'alert-type' => "success");
+        return redirect()->route('page.index')->with($notification);
     }
 
     public function destroy($id)
