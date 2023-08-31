@@ -298,7 +298,13 @@
               <li class="nav-item">
                 <a href="pages/examples/faq.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>FAQ</p>
+                  <p>Social</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/examples/faq.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>website_setting</p>
                 </a>
               </li>
             </ul>
@@ -315,15 +321,9 @@
             <ul class="nav nav-treeview">
               
               <li class="nav-item">
-                <a href="pages/examples/forgot-password.html" class="nav-link">
+                <a href="{{ route('password.change') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Forgot Password</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/recover-password.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Recover Password</p>
+                  <p>Change Password</p>
                 </a>
               </li>
 

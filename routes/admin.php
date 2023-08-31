@@ -35,6 +35,8 @@ use App\Http\Controllers\Backend\SeoController;
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin/login', [AdminController::class, 'supper_admin'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/password/change', [AdminController::class, 'change_password'])->middleware(['auth', 'verified'])->name('password.change');
+Route::post('/password/update', [AdminController::class, 'password_update'])->middleware(['auth', 'verified'])->name('pass.update');
 
 
 // Route::middleware('auth')->group(function () {
