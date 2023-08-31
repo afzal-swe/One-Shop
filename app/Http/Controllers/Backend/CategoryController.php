@@ -8,6 +8,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
@@ -26,15 +27,37 @@ class CategoryController extends Controller
             'category_name' => 'required',
         ]);
 
-        Category::insert([
-            'brand_id' => $request->brand_id,
-            'category_name' => $request->category_name,
-            'category_status' => $request->category_status,
-            'category_slug' => Str::of($request->category_name)->slug('-'),
-            'created_at' => Carbon::now(),
-        ]);
-        $notification = array('messege' => 'Category Added Successfully', 'alert-type' => 'success');
-        return redirect()->route('category.index')->with($notification);
+        $slug = Str::of($request->category_name)->slug('-');
+
+        if ($request->file('image')) {
+            $img = $request->image;
+
+            $name_gen = $slug . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(240, 120)->save("image/category/" . $name_gen);
+
+            $save_img = "image/category/" . $name_gen;
+
+            Category::insert([
+                'brand_id' => $request->brand_id,
+                'category_name' => $request->category_name,
+                'category_status' => $request->category_status,
+                'category_slug' => $slug,
+                'image' => $save_img,
+                'created_at' => Carbon::now(),
+            ]);
+            $notification = array('messege' => 'Category Added Successfully', 'alert-type' => 'success');
+            return redirect()->back()->with($notification);
+        } else {
+            Category::insert([
+                'brand_id' => $request->brand_id,
+                'category_name' => $request->category_name,
+                'category_status' => $request->category_status,
+                'category_slug' => $slug,
+                'created_at' => Carbon::now(),
+            ]);
+            $notification = array('messege' => 'Category Added Successfully', 'alert-type' => 'success');
+            return redirect()->back()->with($notification);
+        }
     }
 
     public function edit($id)

@@ -30,7 +30,7 @@
                     <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">All Category</h3>
-                          <button class="btn btn-info btn-sm" style="float: right" data-toggle="modal" data-target="#modal-default">Add Category</button>
+                          <button class="btn btn-info btn-sm" style="float: right" data-toggle="modal" data-target="#modal-default"> + Add Category</button>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -125,9 +125,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Category Image <span class="text-danger">*</span></label>
-                            <input type="file" name="image" class="form-control">
-                            
+                          <label for="exampleInputFile">Category Image</label>
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" name="image"  class="custom-file-input" id="exampleInputFile">
+                              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            </div>
+                            <div class="input-group-append">
+                              <span class="input-group-text">Upload</span>
+                            </div>
+                          </div>
                         </div>
    
                         <input type="checkbox" name="category_status" value="1"><span> Publication</span><br>
