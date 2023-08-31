@@ -12,12 +12,12 @@ class SeoController extends Controller
     //
     public function create()
     {
-        $seo = Seo::find(1);
+        $seo = Seo::first();
 
         if ($seo !== Null) {
-            return view('backend.seo.edit', compact('seo'));
+            return view('backend.setting.seo.edit', compact('seo'));
         } else {
-            return view('backend.seo.create');
+            return view('backend.setting.seo.create');
         }
     }
 

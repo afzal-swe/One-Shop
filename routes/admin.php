@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SocialController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SeoController;
 use App\Http\Controllers\Backend\SmtpController;
+use App\Http\Controllers\Backend\PageController;
 
 
 
@@ -84,5 +85,11 @@ Route::post('/social/update/{id}', [SocialController::class, 'update'])->name('s
 Route::get('/smtp/setting', [SmtpController::class, 'create'])->name('smtp.create')->middleware(['auth', 'verified']);
 Route::post('/smtp/store', [SmtpController::class, 'store'])->name('smtp.store')->middleware(['auth', 'verified']);
 Route::post('/smtp/update/{id}', [SmtpController::class, 'update'])->name('smtp.update')->middleware(['auth', 'verified']);
+
+// Page Management Route Section Start ===========================================================
+Route::get('/page/management', [PageController::class, 'index'])->name('page.index')->middleware(['auth', 'verified']);
+Route::get('/page/create', [PageController::class, 'create'])->name('page.create')->middleware(['auth', 'verified']);
+Route::post('/page/store', [PageController::class, 'store'])->name('page.store')->middleware(['auth', 'verified']);
+// Route::post('/smtp/update/{id}', [SmtpController::class, 'update'])->name('smtp.update')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';

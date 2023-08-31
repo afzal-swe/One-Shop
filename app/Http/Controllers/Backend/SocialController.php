@@ -16,9 +16,9 @@ class SocialController extends Controller
         $social = Social::find(1);
 
         if ($social == Null) {
-            return view('backend.social_section.create');
+            return view('backend.setting.social_section.create');
         } else {
-            return view('backend.social_section.edit', compact('social'));
+            return view('backend.setting.social_section.edit', compact('social'));
         }
     }
 
