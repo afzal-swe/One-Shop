@@ -280,31 +280,31 @@
               <li class="nav-item">
                 <a href="{{ route('seo.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>SEO</p>
+                  <p>SEO Setting</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/examples/profile.html" class="nav-link">
+                <a href="{{ route('social.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Role</p>
+                  <p>Social Setting</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/examples/contacts.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Contacts</p>
+                  <p>Website Setting</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/examples/faq.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Social</p>
+                  <p>Page Setting</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/examples/faq.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>website_setting</p>
+                  <p>Payment Gateway</p>
                 </a>
               </li>
             </ul>

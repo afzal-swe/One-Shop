@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\AdminController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\CategoryController;
-use App\Http\Controllers\Backend\ChildCategoryController;
+use App\Http\Controllers\Backend\SocialController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SeoController;
 
@@ -72,5 +72,10 @@ Route::get('/sub-category/delete/{id}', [SubCategoryController::class, 'destroy'
 Route::get('/seo', [SeoController::class, 'create'])->name('seo.create')->middleware(['auth', 'verified']);
 Route::post('/seo/store', [SeoController::class, 'store'])->name('seo.store')->middleware(['auth', 'verified']);
 Route::post('/seo/update/{id}', [SeoController::class, 'update'])->name('seo.update')->middleware(['auth', 'verified']);
+
+// Social Route Section Start ===========================================================
+Route::get('/social/setting', [SocialController::class, 'create'])->name('social.create')->middleware(['auth', 'verified']);
+Route::post('/social/store', [SocialController::class, 'store'])->name('social.store')->middleware(['auth', 'verified']);
+Route::post('/social/update/{id}', [SocialController::class, 'update'])->name('social.update')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';
