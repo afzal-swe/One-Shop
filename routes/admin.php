@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SocialController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SeoController;
+use App\Http\Controllers\Backend\SmtpController;
 
 
 
@@ -77,5 +78,11 @@ Route::post('/seo/update/{id}', [SeoController::class, 'update'])->name('seo.upd
 Route::get('/social/setting', [SocialController::class, 'create'])->name('social.create')->middleware(['auth', 'verified']);
 Route::post('/social/store', [SocialController::class, 'store'])->name('social.store')->middleware(['auth', 'verified']);
 Route::post('/social/update/{id}', [SocialController::class, 'update'])->name('social.update')->middleware(['auth', 'verified']);
+
+
+// SMTP Route Section Start ===========================================================
+Route::get('/smtp/setting', [SmtpController::class, 'create'])->name('smtp.create')->middleware(['auth', 'verified']);
+Route::post('/smtp/store', [SmtpController::class, 'store'])->name('smtp.store')->middleware(['auth', 'verified']);
+Route::post('/smtp/update/{id}', [SmtpController::class, 'update'])->name('smtp.update')->middleware(['auth', 'verified']);
 
 // require __DIR__ . '/auth.php';

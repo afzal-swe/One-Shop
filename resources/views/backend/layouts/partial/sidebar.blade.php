@@ -302,6 +302,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{ route('smtp.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>SMTP Setting</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="pages/examples/faq.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Payment Gateway</p>
