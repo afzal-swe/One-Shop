@@ -85,9 +85,21 @@ class CategoryController extends Controller
     public function destroy($id)
     {
 
-        Category::findOrFail($id)->delete();
+        $file = Category::findOrFail($id);
 
-        $notification = array('messege' => 'Category Delete Successfully', 'alert-type' => 'success');
-        return redirect()->route('category.index')->with($notification);
+        if ($file == 'image') {
+            $img = $file->image;
+            unlink($img);
+
+            Category::findOrFail($id)->delete();
+
+            $notification = array('messege' => 'Category Delete Successfully', 'alert-type' => 'success');
+            return redirect()->route('category.index')->with($notification);
+        } else {
+            Category::findOrFail($id)->delete();
+
+            $notification = array('messege' => 'Category Delete Successfully', 'alert-type' => 'success');
+            return redirect()->route('category.index')->with($notification);
+        }
     }
 }
