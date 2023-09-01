@@ -71,15 +71,43 @@ class CategoryController extends Controller
     {
         $update = $request->id;
 
-        Category::findOrFail($update)->update([
-            'brand_id' => $request->brand_id,
-            'category_name' => $request->category_name,
-            'category_slug' => Str::of($request->category_name)->slug('-'),
-            'updated_at' => Carbon::now(),
+        $file = Category::findOrFail($update);
 
-        ]);
-        $notification = array('messege' => 'Category Update Successfully', 'alert-type' => 'success');
-        return redirect()->route('category.index')->with($notification);
+        $slug = Str::of($request->category_name)->slug('-');
+
+        if ($request->file('image')) {
+
+            $img = $file->image;
+            unlink($img);
+
+            $img = $request->file('image');
+
+            $img_name = $slug . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(240, 120)->save("image/category/" . $img_name);
+
+            $img_url = "image/category/" . $img_name;
+
+            Category::findOrFail($update)->update([
+                'brand_id' => $request->brand_id,
+                'category_name' => $request->category_name,
+                'category_slug' => $slug,
+                'image' => $img_url,
+                'updated_at' => Carbon::now(),
+
+            ]);
+            $notification = array('messege' => 'Category Update Successfully', 'alert-type' => 'success');
+            return redirect()->route('category.index')->with($notification);
+        } else {
+            Category::findOrFail($update)->update([
+                'brand_id' => $request->brand_id,
+                'category_name' => $request->category_name,
+                'category_slug' => $slug,
+                'updated_at' => Carbon::now(),
+
+            ]);
+            $notification = array('messege' => 'Category Update Successfully', 'alert-type' => 'success');
+            return redirect()->route('category.index')->with($notification);
+        }
     }
 
     public function destroy($id)
