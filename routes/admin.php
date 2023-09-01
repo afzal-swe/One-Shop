@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\SeoController;
 use App\Http\Controllers\Backend\SmtpController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\WebsiteSettingController;
+use App\Http\Controllers\Backend\WarehouseController;
 
 
 
@@ -100,6 +101,13 @@ Route::get('/page/delete/{id}', [PageController::class, 'destroy'])->name('page.
 Route::get('/website/info', [WebsiteSettingController::class, 'create'])->name('website.setting.create')->middleware(['auth', 'verified']);
 Route::post('/website/info/store', [WebsiteSettingController::class, 'store'])->name('website.setting.store')->middleware(['auth', 'verified']);
 Route::post('/website/info/update/{id}', [WebsiteSettingController::class, 'update'])->name('website.setting.update')->middleware(['auth', 'verified']);
+
+
+// Ware House Route Section Start ===========================================================
+Route::get('/warehouse', [WarehouseController::class, 'index'])->name('warehouse.index')->middleware(['auth', 'verified']);
+Route::post('/warehouse/store', [WarehouseController::class, 'store'])->name('warehouse.store')->middleware(['auth', 'verified']);
+Route::get('/warehouse/delete/{id}', [WarehouseController::class, 'delete'])->name('warehouse.delete')->middleware(['auth', 'verified']);
+
 
 
 // require __DIR__ . '/auth.php';
