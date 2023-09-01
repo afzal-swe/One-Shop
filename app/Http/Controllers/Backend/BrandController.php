@@ -99,7 +99,7 @@ class BrandController extends Controller
 
         $file = Brand::findOrFail($id);
 
-        if ($file == 'image') {
+        if ($file !== 'image') {
             $img = $file->image;
             unlink($img);
 

@@ -115,7 +115,7 @@ class CategoryController extends Controller
 
         $file = Category::findOrFail($id);
 
-        if ($file == 'image') {
+        if ($file !== 'image') {
             $img = $file->image;
             unlink($img);
 
