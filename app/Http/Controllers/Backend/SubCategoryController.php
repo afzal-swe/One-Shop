@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use Intervention\Image\Facades\Image;
 
 
 class SubCategoryController extends Controller
@@ -31,16 +32,38 @@ class SubCategoryController extends Controller
 
         ]);
 
-        SubCategory::insert([
-            'brand_id' => $request->brand_id,
-            'category_id' => $request->category_id,
-            'subcategory_name' => $request->subcategory_name,
-            'subcategory_slug' => Str::of($request->subcategory_name)->slug('-'),
-            'subcategory_status' => $request->subcategory_status,
-            'created_at' => Carbon::now(),
-        ]);
-        $notification = array('messege' => 'SubCategory Added Successfully', 'alert-type' => 'success');
-        return redirect()->route('subcategory.index')->with($notification);
+        $name_slug = Str::of($request->subcategory_name)->slug('-');
+
+        if ($request->file('image')) {
+
+            $img = $request->file('image');
+            $name_gen = $name_slug . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(240, 120)->save("image/subcategory/" . $name_gen);
+            $img_url = "image/subcategory/" . $name_gen;
+
+            SubCategory::insert([
+                'brand_id' => $request->brand_id,
+                'category_id' => $request->category_id,
+                'subcategory_name' => $request->subcategory_name,
+                'subcategory_slug' => $name_slug,
+                'image' => $img_url,
+                'subcategory_status' => $request->subcategory_status,
+                'created_at' => Carbon::now(),
+            ]);
+            $notification = array('messege' => 'SubCategory Added Successfully', 'alert-type' => 'success');
+            return redirect()->back()->with($notification);
+        } else {
+            SubCategory::insert([
+                'brand_id' => $request->brand_id,
+                'category_id' => $request->category_id,
+                'subcategory_name' => $request->subcategory_name,
+                'subcategory_slug' => $name_slug,
+                'subcategory_status' => $request->subcategory_status,
+                'created_at' => Carbon::now(),
+            ]);
+            $notification = array('messege' => 'SubCategory Added Successfully', 'alert-type' => 'success');
+            return redirect()->back()->with($notification);
+        }
     }
 
     public function edit($id)

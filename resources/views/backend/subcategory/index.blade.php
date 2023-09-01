@@ -38,6 +38,7 @@
                             <thead>
                                 <tr>
                                     <th>SL</th>
+                                    <th>Brand Logo</th>
                                     <th>Brand Name</th>
                                     <th>Category Name</th>
                                     <th>Sub-Category Name</th>
@@ -50,7 +51,7 @@
                                 @foreach ($sub_category as $key=>$row)
                                     <tr>
                                         <td>{{++$key}}</td>
-                                        {{-- <td><img src="{{ asset($row->image) }}" style="height: 40px; width:60px"></td> --}}
+                                        <td><img src="{{ asset($row->image) }}" style="height: 40px; width:60px"></td>
                                         <td>{{ $row->brand->name }}</td>
                                         <td>{{ $row->category->category_name }}</td>
                                         <td>{{ $row->subcategory_name }}</td>
