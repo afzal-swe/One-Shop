@@ -36,7 +36,7 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                   <h4 class="modal-title">Update Sub Category</h4>
-                                  <a href="{{ route('category.index') }}" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <a href="{{ route('subcategory.index') }}" type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                   </a>
                                 </div>
@@ -72,8 +72,8 @@
                                             </div>
                     
                                             <div class="form-group">
-                                                <label for="">Brand Image</label>
-                                                <input type="file" name="category_en" class="form-control" >
+                                                <label for="">Sub Category Image</label>
+                                                <input type="file" name="image" class="form-control" >
                                             </div>
         
                                             <div class="card-footer">

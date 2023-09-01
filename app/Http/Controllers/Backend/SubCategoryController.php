@@ -79,15 +79,39 @@ class SubCategoryController extends Controller
     {
         $update = $request->id;
 
-        SubCategory::findOrFail($update)->update([
-            'brand_id' => $request->brand_id,
-            'category_id' => $request->category_id,
-            'subcategory_name' => $request->subcategory_name,
-            'subcategory_slug' => Str::of($request->subcategory_name)->slug('-'),
-            'updated_at' => Carbon::now(),
-        ]);
-        $notification = array('messege' => 'SubCategory Added Successfully', 'alert-type' => 'success');
-        return redirect()->back()->with($notification);
+        $file = SubCategory::findOrFail($update);
+        $name = Str::of($request->subcategory_name)->slug('-');
+
+        if ($request->file('image')) {
+            $img = $file->image;
+            unlink($img);
+
+            $img = $request->file('image');
+            $name_gen = $name . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(240, 120)->save("image/subcategory/" . $name_gen);
+            $img_url = "image/subcategory/" . $name_gen;
+
+            SubCategory::findOrFail($update)->update([
+                'brand_id' => $request->brand_id,
+                'category_id' => $request->category_id,
+                'subcategory_name' => $request->subcategory_name,
+                'subcategory_slug' => $name,
+                'image' => $img_url,
+                'updated_at' => Carbon::now(),
+            ]);
+            $notification = array('messege' => 'SubCategory Added Successfully', 'alert-type' => 'success');
+            return redirect()->route('subcategory.index')->with($notification);
+        } else {
+            SubCategory::findOrFail($update)->update([
+                'brand_id' => $request->brand_id,
+                'category_id' => $request->category_id,
+                'subcategory_name' => $request->subcategory_name,
+                'subcategory_slug' => $name,
+                'updated_at' => Carbon::now(),
+            ]);
+            $notification = array('messege' => 'SubCategory Added Successfully', 'alert-type' => 'success');
+            return redirect()->route('subcategory.index')->with($notification);
+        }
     }
 
     public function destroy($id)
