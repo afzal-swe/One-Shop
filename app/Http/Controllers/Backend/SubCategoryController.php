@@ -92,10 +92,21 @@ class SubCategoryController extends Controller
 
     public function destroy($id)
     {
+        $file = SubCategory::find($id);
+        if ($file !== 'image') {
+            $img = $file->image;
+            unlink($img);
 
-        SubCategory::findOrFail($id)->delete();
+            SubCategory::findOrFail($id)->delete();
 
-        $notification = array('messege' => 'SubCategory Delete Successfully', 'alert-type' => 'success');
-        return redirect()->back()->with($notification);
+            $notification = array('messege' => 'SubCategory Delete Successfully', 'alert-type' => 'success');
+            return redirect()->back()->with($notification);
+        } else {
+
+            SubCategory::findOrFail($id)->delete();
+
+            $notification = array('messege' => 'SubCategory Delete Successfully', 'alert-type' => 'success');
+            return redirect()->back()->with($notification);
+        }
     }
 }
