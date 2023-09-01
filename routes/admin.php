@@ -99,6 +99,7 @@ Route::get('/page/delete/{id}', [PageController::class, 'destroy'])->name('page.
 // Web Site Setting Route Section Start ===========================================================
 Route::get('/website/info', [WebsiteSettingController::class, 'create'])->name('website.setting.create')->middleware(['auth', 'verified']);
 Route::post('/website/info/store', [WebsiteSettingController::class, 'store'])->name('website.setting.store')->middleware(['auth', 'verified']);
+Route::post('/website/info/update/{id}', [WebsiteSettingController::class, 'update'])->name('website.setting.update')->middleware(['auth', 'verified']);
 
 
 // require __DIR__ . '/auth.php';
