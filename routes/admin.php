@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\SmtpController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\WebsiteSettingController;
 use App\Http\Controllers\Backend\WarehouseController;
+use App\Http\Controllers\Backend\CouponController;
 
 
 
@@ -107,6 +108,13 @@ Route::post('/website/info/update/{id}', [WebsiteSettingController::class, 'upda
 Route::get('/warehouse', [WarehouseController::class, 'index'])->name('warehouse.index')->middleware(['auth', 'verified']);
 Route::post('/warehouse/store', [WarehouseController::class, 'store'])->name('warehouse.store')->middleware(['auth', 'verified']);
 Route::get('/warehouse/delete/{id}', [WarehouseController::class, 'delete'])->name('warehouse.delete')->middleware(['auth', 'verified']);
+
+
+// Coupon Route Section Start ===========================================================
+Route::get('/coupon', [CouponController::class, 'index'])->name('coupon.index')->middleware(['auth', 'verified']);
+Route::post('/coupon/store', [CouponController::class, 'store'])->name('coupon.store')->middleware(['auth', 'verified']);
+Route::get('/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy')->middleware(['auth', 'verified']);
+
 
 
 

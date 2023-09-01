@@ -11,7 +11,7 @@ class SmtpController extends Controller
     //
     public function create()
     {
-        $smtp = Smtp::find(1);
+        $smtp = Smtp::first();
 
         if ($smtp == Null) {
             return view('backend.setting.smtp_section.create');

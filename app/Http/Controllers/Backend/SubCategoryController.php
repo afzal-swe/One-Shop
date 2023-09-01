@@ -63,8 +63,8 @@ class SubCategoryController extends Controller
             'subcategory_slug' => Str::of($request->subcategory_name)->slug('-'),
             'updated_at' => Carbon::now(),
         ]);
-        $notification = array('messege' => 'SubCategory Update Successfully', 'alert-type' => 'success');
-        return redirect()->route('subcategory.index')->with($notification);
+        $notification = array('messege' => 'SubCategory Added Successfully', 'alert-type' => 'success');
+        return redirect()->back()->with($notification);
     }
 
     public function destroy($id)

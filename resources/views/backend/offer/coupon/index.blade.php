@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Ware House Table</h1>
+            <h1>Coupon Table</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -29,18 +29,20 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                          <h3 class="card-title">Warehouse List</h3>
-                          <button class="btn btn-info btn-sm" style="float: right" data-toggle="modal" data-target="#modal-default"> + Add Warehouse</button>
+                          <h3 class="card-title">Coupon List Here</h3>
+                          <button class="btn btn-info btn-sm" style="float: right" data-toggle="modal" data-target="#addModal"> + Add Coupon</button>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                          <table class="table table-bordered table-striped table-sm ytable">
+                          <table  class="table table-bordered table-striped table-sm ytable">
                             <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Warehouse  Name</th>
-                                    <th>Warehouse  Address</th>
-                                    <th>Warehouse Phone</th>
+                                    <th>Coupon Code</th>
+                                    <th>Coupon Date</th>
+                                    <th>Coupon Amount</th>
+                                    <th>Coupon Type</th>
+                                    <th>Coupon Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -57,50 +59,46 @@
     </section>
 
 {{-- Category Added Modal --}}
-    <div class="modal fade" id="modal-default">
+    <div class="modal fade" id="addModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Add Ware House</h4>
+              <h4 class="modal-title">Create New Coupon</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('warehouse.store') }}" method="post" id="add-form">
+                <form action="{{ route('coupon.store') }}" method="post" id="add-form">
                     @csrf
 
                     <div class="card-body">
 
                         <div class="form-group">
-                            <label for="">Warehouse Name </label>
-                            <input type="text" name="warhouse_name" class="form-control @error('warhouse_name') is-invalid @enderror " placeholder="Warehouse Name" value="{{old('warhouse_name')}}">
-                            @error('warhouse_name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <label for="coupon_code">Coupone Code </label>
+                            <input type="text" name="coupon_code" class="form-control " placeholder="Coupone Code" value="{{old('coupon_code')}}" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Warehouse Address </label>
-                            <input type="text" name="warhouse_address" class="form-control @error('warhouse_address') is-invalid @enderror " placeholder="Warehouse Address" value="{{old('warhouse_address')}}">
-                            @error('warhouse_address')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <label for="type">Coupone Type </label>
+                            <select name="type" class="form-control" id="" required>
+                                <option selected disabled>-- Choose Type --</option>
+                                <option value="1">Fixed</option>
+                                <option value="2">Percentage</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Warehouse Phone </label>
-                            <input type="text" name="warhouse_phone" class="form-control @error('warhouse_phone') is-invalid @enderror " placeholder="Warehouse Number" value="{{old('warhouse_phone')}}">
-                            @error('warhouse_phone')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <label for="coupon_amount">Coupone Amount </label>
+                            <input type="text" name="coupon_amount" class="form-control " placeholder="Coupone Amount" value="{{old('coupon_amount')}}" required>
                         </div>
+
+                        <div class="form-group">
+                            <label for="valid_date">Valid Date </label>
+                            <input type="date" name="valid_date" class="form-control " placeholder="Valid Date" value="{{old('valid_date')}}" required>
+                        </div>
+
+                        <input type="checkbox" name="status" value="1"><span> Publication</span><br>
                            
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary"><span class="d-none loader" ><i class="fas fa-spinner"></i>Loading..</span><span class="submit_btn">Submit</span></button>
@@ -122,12 +120,14 @@
             var table=$('.ytable').DataTable({
                 processing:true,
                 serverSide:true,
-                ajax:"{{ route('warehouse.index') }}",
+                ajax:"{{ route('coupon.index') }}",
                 columns:[
                     {data:'DT_RowIndex',name:'DT_RowIndex'},
-                    {data:'warhouse_name',name:'warhouse_name'},
-                    {data:'warhouse_address',name:'warhouse_address'},
-                    {data:'warhouse_phone',name:'warhouse_phone'},
+                    {data:'coupon_code',name:'coupon_code'},
+                    {data:'valid_date',name:'valid_date'},
+                    {data:'coupon_amount',name:'coupon_amount'},
+                    {data:'type',name:'type'},
+                    {data:'status',name:'status'},
                     {data:'action',name:'action',orderable:true, searchable:true},
                 ]
             });
