@@ -113,6 +113,7 @@ Route::get('/warehouse/delete/{id}', [WarehouseController::class, 'delete'])->na
 // Coupon Route Section Start ===========================================================
 Route::get('/coupon', [CouponController::class, 'index'])->name('coupon.index')->middleware(['auth', 'verified']);
 Route::post('/coupon/store', [CouponController::class, 'store'])->name('coupon.store')->middleware(['auth', 'verified']);
+Route::get('/coupon/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit')->middleware(['auth', 'verified']);
 Route::get('/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy')->middleware(['auth', 'verified']);
 
 

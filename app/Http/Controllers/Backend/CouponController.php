@@ -20,8 +20,8 @@ class CouponController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $actionbtn = '<a href="#" class="btn btn-info btn-sm edit" data-id="" data-toggle="modal" data-target="#editModal"  title="Edit Data"><i class="fas fa-edit"></i></a>
-                <a href="#" data-id="' . $row->id . '" id="delete_coupon" class="btn btn-danger btn-sm delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>';
+                    $actionbtn = '<a href="' . route('coupon.edit', [$row->id]) . '" class="btn btn-info btn-sm edit" data-id="" data-toggle="modal" data-target="#editModal"  title="Edit Data"><i class="fas fa-edit"></i></a>
+                <a href="' . route('coupon.destroy', [$row->id]) . '" id="delete" class="btn btn-danger btn-sm delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>';
 
                     return $actionbtn;
                 })
@@ -46,6 +46,24 @@ class CouponController extends Controller
             'created_at' => Carbon::now(),
         ]);
         $notification = array('messege' => 'Coupon Create Successfully', 'alert-type' => 'success');
+        return redirect()->back()->with($notification);
+    }
+
+    // Edit coupon 
+    public function edit($id)
+    {
+        $edit = Coupon::findOrFail($id);
+        return view('backend.offer.coupon.edit', compact('edit'));
+    }
+
+    // Delete Coupon
+    public function destroy($id)
+    {
+
+        // DB::table('coupons')->where('id', $id)->delete();
+        Coupon::findOrFail($id)->delete();
+
+        $notification = array('messege' => 'Coupon Delete Successfully', 'alert-type' => 'success');
         return redirect()->back()->with($notification);
     }
 }
