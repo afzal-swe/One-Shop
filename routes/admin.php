@@ -120,6 +120,7 @@ Route::get('/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('c
 // Pickup Point Route Section Start ===========================================================
 Route::get('/pickup', [Pickup_pointController::class, 'index'])->name('pickup_point.index')->middleware(['auth', 'verified']);
 Route::post('/pickup/store', [Pickup_pointController::class, 'store'])->name('pickup_point.store')->middleware(['auth', 'verified']);
+// Route::delete('/pickup/delete/{id}', [Pickup_pointController::class, 'destroy'])->name('pickup.destroy')->middleware(['auth', 'verified']);
 
 
 
