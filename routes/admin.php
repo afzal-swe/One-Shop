@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\WebsiteSettingController;
 use App\Http\Controllers\Backend\WarehouseController;
 use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\Pickup_pointController;
 
 
 
@@ -116,6 +117,9 @@ Route::post('/coupon/store', [CouponController::class, 'store'])->name('coupon.s
 Route::get('/coupon/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit')->middleware(['auth', 'verified']);
 Route::get('/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy')->middleware(['auth', 'verified']);
 
+// Pickup Point Route Section Start ===========================================================
+Route::get('/pickup', [Pickup_pointController::class, 'index'])->name('pickup_point.index')->middleware(['auth', 'verified']);
+Route::post('/pickup/store', [Pickup_pointController::class, 'store'])->name('pickup_point.store')->middleware(['auth', 'verified']);
 
 
 
