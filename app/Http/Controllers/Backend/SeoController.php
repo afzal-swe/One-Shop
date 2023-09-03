@@ -25,7 +25,7 @@ class SeoController extends Controller
     {
         $request->validate([
             'meta_author' => 'required',
-            'meta_title' => 'required',
+            'meta_title' => 'required|max:30',
             'meta_keyword' => 'required',
             'meta_description' => 'required',
             'google_analytics' => 'required',

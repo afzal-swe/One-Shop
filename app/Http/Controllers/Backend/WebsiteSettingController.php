@@ -88,6 +88,7 @@ class WebsiteSettingController extends Controller
             $logo = $request->file('logo');
             $favicon = $request->file('favicon');
 
+
             $logo_name = $name . '.' . $logo->getClientOriginalExtension();
             Image::make($logo)->resize(320, 120)->save("image/website/logo/" . $logo_name);
             $logo_url = "image/website/logo" . $logo_name;

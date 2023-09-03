@@ -101,9 +101,7 @@
                             <label for="">Brand Name <span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control @error('name') is-invalid @enderror " placeholder="Brand Name" value="{{old('name')}}" required>
                             @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                              <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
 
@@ -112,7 +110,7 @@
                           <label for="exampleInputFile">Brand Logo</label>
                           <div class="input-group">
                             <div class="custom-file">
-                              <input type="file" name="image"  class="custom-file-input" id="exampleInputFile">
+                              <input type="file" name="image"  class="custom-file-input" id="exampleInputFile" required>
                               <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                             </div>
                             <div class="input-group-append">
