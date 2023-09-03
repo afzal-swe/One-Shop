@@ -101,7 +101,7 @@
 
                         <div class="form-group">
                             <label for="">Brand Name <span class="text-danger">*</span></label>
-                            <select name="brand_id" id="" class="form-control  @error('brand_id') is-invalid @enderror ">
+                            <select name="brand_id" id="" class="form-control  @error('brand_id') is-invalid @enderror " required>
                               <option value="" selected disabled>Choose Brand</option>
                                 @foreach ($brand as $row)
                                 <option value="{{ $row->id }}">{{ $row->name }}</option>
@@ -125,10 +125,10 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="exampleInputFile">Category Image</label>
+                          <label for="exampleInputFile">Category Image <span class="text-danger">*</span></label>
                           <div class="input-group">
                             <div class="custom-file">
-                              <input type="file" name="image"  class="custom-file-input" id="exampleInputFile">
+                              <input type="file" name="image"  class="custom-file-input" id="exampleInputFile" required>
                               <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                             </div>
                             <div class="input-group-append">

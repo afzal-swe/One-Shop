@@ -30,7 +30,7 @@
                     <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">All Brands</h3>
-                          <button class="btn btn-info btn-sm" style="float: right" data-toggle="modal" data-target="#modal-default">Add Brand</button>
+                          <button class="btn btn-info btn-sm" style="float: right" data-toggle="modal" data-target="#modal-default"> + Add Brand</button>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -107,7 +107,7 @@
 
                         
                         <div class="form-group">
-                          <label for="exampleInputFile">Brand Logo</label>
+                          <label for="exampleInputFile">Brand Logo <span class="text-danger">*</span></label>
                           <div class="input-group">
                             <div class="custom-file">
                               <input type="file" name="image"  class="custom-file-input" id="exampleInputFile" required>

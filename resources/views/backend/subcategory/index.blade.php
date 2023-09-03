@@ -30,7 +30,7 @@
                     <div class="card">
                         <div class="card-header">
                           <h3 class="card-title">All Sub-Category</h3>
-                          <button class="btn btn-info btn-sm" style="float: right" data-toggle="modal" data-target="#modal-default">Add Sub-Category</button>
+                          <button class="btn btn-info btn-sm" style="float: right" data-toggle="modal" data-target="#modal-default"> + Add Sub-Category</button>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -103,7 +103,7 @@
 
                         <div class="form-group">
                             <label for="">Brand Name <span class="text-danger">*</span></label>
-                            <select name="brand_id" id="" class="form-control  @error('brand_id') is-invalid @enderror ">
+                            <select name="brand_id" id="" class="form-control  @error('brand_id') is-invalid @enderror " required>
                               <option value="" selected disabled>Choose Brand</option>
                                 @foreach ($brand as $row)
                                 <option value="{{ $row->id }}">{{ $row->name }}</option>
@@ -118,7 +118,7 @@
 
                         <div class="form-group">
                             <label for="">Category Name <span class="text-danger">*</span></label>
-                            <select name="category_id" id="" class="form-control  @error('category_id') is-invalid @enderror ">
+                            <select name="category_id" id="" class="form-control  @error('category_id') is-invalid @enderror " required>
                               <option value="" selected disabled>Choose Category</option>
                                 @foreach ($category as $row)
                                 <option value="{{ $row->id }}">{{ $row->category_name }}</option>
@@ -143,7 +143,7 @@
 
                         <div class="form-group">
                             <label for="">Category Image <span class="text-danger">*</span></label>
-                            <input type="file" name="image" class="form-control">
+                            <input type="file" name="image" class="form-control" required>
                             
                         </div>
    
