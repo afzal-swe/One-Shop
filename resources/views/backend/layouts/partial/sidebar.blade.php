@@ -5,8 +5,14 @@
       $website_info = DB::table('website_settings')->first();
     @endphp
     <a href="index3.html" class="brand-link">
+      @if ($website_info !== Null)
       <img src="{{ asset ($website_info->favicon)}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">{{ $website_info->website_name }}</span>
+      @else
+      <img src="{{ asset ('backend/dist/img/user2-160x160.jpg')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">Testing Website</span>
+      @endif
+      
     </a>
 
     <!-- Sidebar -->
@@ -97,44 +103,61 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Create Product</p>
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-chart-pie"></i>
+                  <p>
+                    Product Managment
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
                 </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('product.create') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Add New Product</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('product.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Manage Product</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a href="pages/UI/icons.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  {{-- <i class="far fa-circle nav-icon"></i> --}}
                   <p>Product Catalog</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="pages/UI/buttons.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  {{-- <i class="far fa-circle nav-icon"></i> --}}
                   <p>Vendor Product</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('brand.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  {{-- <i class="far fa-circle nav-icon"></i> --}}
                   <p>Product Brand</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('category.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  {{-- <i class="far fa-circle nav-icon"></i> --}}
                   <p>Product Category</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('subcategory.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  {{-- <i class="far fa-circle nav-icon"></i> --}}
                   <p>Sub Category</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('warehouse.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
+                  {{-- <i class="far fa-circle nav-icon"></i> --}}
                   <p>Ware House</p>
                 </a>
               </li>

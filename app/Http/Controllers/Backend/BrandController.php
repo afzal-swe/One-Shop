@@ -24,6 +24,7 @@ class BrandController extends Controller
 
         $request->validate([
             'name' => 'required|unique:brands|max:50',
+            'image' => 'required',
         ]);
 
         if ($request->file('image')) {
@@ -40,13 +41,6 @@ class BrandController extends Controller
                 'image' => $save_img,
                 'status' => $request->status,
 
-            ]);
-            $notification = array('messege' => 'Brand Insert Successfully', 'alert-type' => 'success');
-            return redirect()->back()->with($notification);
-        } else {
-            Brand::insert([
-                'name' => $request->name,
-                'status' => $request->status,
             ]);
             $notification = array('messege' => 'Brand Insert Successfully', 'alert-type' => 'success');
             return redirect()->back()->with($notification);
@@ -103,11 +97,6 @@ class BrandController extends Controller
             $img = $file->image;
             unlink($img);
 
-            Brand::findOrFail($id)->delete();
-
-            $notification = array('messege' => 'Brand Delete Successfully', 'alert-type' => 'success');
-            return redirect()->route('brand.index')->with($notification);
-        } else {
             Brand::findOrFail($id)->delete();
 
             $notification = array('messege' => 'Brand Delete Successfully', 'alert-type' => 'success');

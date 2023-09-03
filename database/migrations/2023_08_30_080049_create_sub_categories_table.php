@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
             $table->foreignId('category_id')->constrained('categories')->cascadeOnDelete();
-            $table->string('subcategory_name')->nullable();
+            $table->string('subcategory_name');
             $table->string('subcategory_slug')->nullable();
-            $table->string('subcategory_status')->nullable();
-            $table->string('image')->nullable();
+            $table->integer('subcategory_status')->nullable()->default(0);
+            $table->string('image');
             $table->timestamps();
         });
     }

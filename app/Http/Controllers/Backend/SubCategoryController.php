@@ -29,6 +29,7 @@ class SubCategoryController extends Controller
             'brand_id' => 'required',
             'category_id' => 'required',
             'subcategory_name' => 'required',
+            'image' => 'required',
 
         ]);
 
@@ -47,17 +48,6 @@ class SubCategoryController extends Controller
                 'subcategory_name' => $request->subcategory_name,
                 'subcategory_slug' => $name_slug,
                 'image' => $img_url,
-                'subcategory_status' => $request->subcategory_status,
-                'created_at' => Carbon::now(),
-            ]);
-            $notification = array('messege' => 'SubCategory Added Successfully', 'alert-type' => 'success');
-            return redirect()->back()->with($notification);
-        } else {
-            SubCategory::insert([
-                'brand_id' => $request->brand_id,
-                'category_id' => $request->category_id,
-                'subcategory_name' => $request->subcategory_name,
-                'subcategory_slug' => $name_slug,
                 'subcategory_status' => $request->subcategory_status,
                 'created_at' => Carbon::now(),
             ]);
@@ -120,12 +110,6 @@ class SubCategoryController extends Controller
         if ($file !== 'image') {
             $img = $file->image;
             unlink($img);
-
-            SubCategory::findOrFail($id)->delete();
-
-            $notification = array('messege' => 'SubCategory Delete Successfully', 'alert-type' => 'success');
-            return redirect()->back()->with($notification);
-        } else {
 
             SubCategory::findOrFail($id)->delete();
 

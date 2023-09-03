@@ -40,6 +40,7 @@ return new class extends Migration
             $table->integer('cash_on_delivery')->nullable();
             $table->integer('admin_id')->nullable();
             $table->integer('warehouse')->nullable();
+            $table->integer('pickup_point')->nullable();
             $table->integer('status')->nullable()->default(0);
             $table->timestamps();
         });

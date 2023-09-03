@@ -25,6 +25,7 @@ class CategoryController extends Controller
         $request->validate([
             'brand_id' => 'required',
             'category_name' => 'required',
+            'image' => 'required',
         ]);
 
         $slug = Str::of($request->category_name)->slug('-');
@@ -43,16 +44,6 @@ class CategoryController extends Controller
                 'category_status' => $request->category_status,
                 'category_slug' => $slug,
                 'image' => $save_img,
-                'created_at' => Carbon::now(),
-            ]);
-            $notification = array('messege' => 'Category Added Successfully', 'alert-type' => 'success');
-            return redirect()->back()->with($notification);
-        } else {
-            Category::insert([
-                'brand_id' => $request->brand_id,
-                'category_name' => $request->category_name,
-                'category_status' => $request->category_status,
-                'category_slug' => $slug,
                 'created_at' => Carbon::now(),
             ]);
             $notification = array('messege' => 'Category Added Successfully', 'alert-type' => 'success');
@@ -119,11 +110,6 @@ class CategoryController extends Controller
             $img = $file->image;
             unlink($img);
 
-            Category::findOrFail($id)->delete();
-
-            $notification = array('messege' => 'Category Delete Successfully', 'alert-type' => 'success');
-            return redirect()->route('category.index')->with($notification);
-        } else {
             Category::findOrFail($id)->delete();
 
             $notification = array('messege' => 'Category Delete Successfully', 'alert-type' => 'success');
