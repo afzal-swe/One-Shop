@@ -21,6 +21,8 @@ class ProductController extends Controller
     //
     public function index()
     {
+        $product = Product::orderBy('id', 'DESC')->get();
+        return view('backend.product.index', compact('product'));
     }
 
     public function create()
@@ -110,7 +112,7 @@ class ProductController extends Controller
 
             ]);
             $notification = array('messege' => 'New Product Added Successfully', 'alert-type' => 'success');
-            return redirect()->back()->with($notification);
+            return redirect()->route('product.index')->with($notification);
         }
     }
 }
