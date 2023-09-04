@@ -80,6 +80,7 @@
             </div>
         </div>
     </section>
+  </div>
 
 {{-- Category Added Modal --}}
     <div class="modal fade" id="modal-default">

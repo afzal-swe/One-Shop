@@ -126,6 +126,7 @@ Route::post('/pickup/store', [Pickup_pointController::class, 'store'])->name('pi
 // Pickup Point Route Section Start ===========================================================
 Route::get('/all/products', [ProductController::class, 'index'])->name('product.index')->middleware(['auth', 'verified']);
 Route::get('/add/product', [ProductController::class, 'create'])->name('product.create')->middleware(['auth', 'verified']);
+Route::post('/store/product', [ProductController::class, 'store'])->name('product.store')->middleware(['auth', 'verified']);
 
 
 

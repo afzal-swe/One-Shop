@@ -67,6 +67,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Project Features :
 
+laravel ecommerce full bangla course now totally free.
 In this course we can learn , how to develop a dynamic complete ecommerce website .
 What topics we learn from here. just look at this list
 -Category ,Subcategory , Childcategory
@@ -81,10 +82,10 @@ What topics we learn from here. just look at this list
 -Buyone getone offer
 -campaign
 -Payment Gateway
--bkash
--rocket
--nagad
--aamarpay
+-Paypal
+-Stripe
+-2checkout
+-SSL Commerze
 -User Role Management
 -Bulk Image Upload
 -Yajradatatable  

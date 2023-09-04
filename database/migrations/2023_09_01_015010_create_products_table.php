@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('product_price')->nullable();
             $table->string('product_unit')->nullable();
             $table->integer('product_quantity')->nullable();
-            $table->integer('discount_price')->nullable();
+            $table->string('discount_price')->nullable();
             $table->string('post_date')->nullable();
+            $table->string('post_month')->nullable();
+            $table->string('slug')->nullable();
             $table->string('images')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('product_purchase_price')->nullable();
@@ -39,7 +41,7 @@ return new class extends Migration
             $table->integer('flash_deal_id')->nullable()->default(0);
             $table->integer('cash_on_delivery')->nullable();
             $table->integer('admin_id')->nullable();
-            $table->integer('warehouse')->nullable();
+            $table->string('warehouse')->nullable();
             $table->integer('pickup_point')->nullable();
             $table->integer('status')->nullable()->default(0);
             $table->timestamps();

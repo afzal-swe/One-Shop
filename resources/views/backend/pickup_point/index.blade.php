@@ -56,6 +56,7 @@
             </div>
         </div>
     </section>
+  </div>
 
 {{-- Category Added Modal --}}
     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
