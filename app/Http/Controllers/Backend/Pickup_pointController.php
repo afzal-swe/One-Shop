@@ -21,8 +21,8 @@ class Pickup_pointController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
 
-                    $actionbtn = '<a href="' . route('coupon.edit', [$row->id]) . '" class="btn btn-info btn-sm edit" data-id="" data-toggle="modal" data-target="#editModal"  title="Edit Data"><i class="fas fa-edit"></i></a>
-                <a href="#" id="delete" class="btn btn-danger btn-sm delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>';
+                    $actionbtn = '<a href="#" class="btn btn-info btn-sm edit" data-id="" data-toggle="modal" data-target="#editModal"  title="Edit Data"><i class="fas fa-edit"></i></a>
+                <a href="' . route('pickup_point.delete', [$row->id]) . '" id="delete" class="btn btn-danger btn-sm delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>';
 
                     return $actionbtn;
                 })
@@ -45,11 +45,12 @@ class Pickup_pointController extends Controller
         return response()->json('Successfully Insert!');
     }
 
-    // public function destroy($id)
-    // {
+    public function destroy($id)
+    {
 
-    //     Piceup_point::findOrFail($id)->delete();
+        Piceup_point::findOrFail($id)->delete();
 
-    //     return response()->json("Successfully Delete !");
-    // }
+        $notification = array('messege' => 'Brand Insert Successfully', 'alert-type' => 'success');
+        return redirect()->back()->with($notification);
+    }
 }

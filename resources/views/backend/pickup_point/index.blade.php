@@ -46,7 +46,11 @@
                                 </tr>
                             </thead>
                             <tbody>
+                              <form action="" method="delete" id="delete_form">
+                                @csrf
+                                @method('DELETE');
 
+                              </form>
                             </tbody>
                           </table>
                         </div>
@@ -116,20 +120,20 @@
 
         // View all Data
         $(function c(){
-            var table=$('.ytable').DataTable({
-                processing:true,
-                serverSide:true,
-                ajax:"{{ route('pickup_point.index') }}",
-                columns:[
-                    {data:'DT_RowIndex',name:'DT_RowIndex'},
-                    {data:'pickup_point_name',name:'pickup_point_name'},
-                    {data:'pickup_point_address',name:'pickup_point_address'},
-                    {data:'pickup_point_phone',name:'pickup_point_phone'},
-                    {data:'pickup_point_phone_two',name:'pickup_point_phone_two'},
-                    {data:'action',name:'action',orderable:true, searchable:true},
+            table=$('.ytable').DataTable({
+              processing:true,
+              serverSide:true,
+              ajax:"{{ route('pickup_point.index') }}",
+              columns:[
+                  {data:'DT_RowIndex',name:'DT_RowIndex'},
+                  {data:'pickup_point_name',name:'pickup_point_name'},
+                  {data:'pickup_point_address',name:'pickup_point_address'},
+                  {data:'pickup_point_phone',name:'pickup_point_phone'},
+                  {data:'pickup_point_phone_two',name:'pickup_point_phone_two'},
+                  {data:'action',name:'action',orderable:true, searchable:true},
                 ]
             });
-        });
+          });
 
         // Store pickup point ajax call
         $('#add_form').submit(function(e){
@@ -143,20 +147,14 @@
                 async:false,
                 data:request,
                 success:function(data){
-                    toastr.success(data);
-                    $('#add_form')[0].reset();
-                    $('.loading').addClass('d-none');
-                    $('#addModal').modal('hide');
-                    table.ajax.reload();
-                }
+                  toastr.success(data);
+                  $('#add_form')[0].reset();
+                  $('.loading').addClass('d-none');
+                  $('#addModal').modal('hide');
+                  table.ajax.reload();
+              }
             });
-        });
-
-        // Rorm Submit route system
-        // $('#add-form').on('submit', function(){
-        //    $('.loader').removeClass('d-none');
-        //    $('.submit_btn').addClass('d-none');
-        // });
+          });
 
     </script>
 

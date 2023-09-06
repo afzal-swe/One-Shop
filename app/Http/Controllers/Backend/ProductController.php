@@ -66,7 +66,7 @@ class ProductController extends Controller
 
 
             $name_gen = $name_slug . '.' . $img->getClientOriginalExtension();
-            Image::make($img)->resize(240, 120)->save("image/product/images/" . $name_gen);
+            Image::make($img)->resize(115, 115)->save("image/product/images/" . $name_gen);
             $img_url = "image/product/images/" . $name_gen;
 
 
