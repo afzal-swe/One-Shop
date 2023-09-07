@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 @section('content')
     	<!-- Characteristics -->
-
+		@include('frontend.layouts.partial.banner')
 	<div class="characteristics">
 		<div class="container">
 			<div class="row">

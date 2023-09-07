@@ -3,8 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-// Backend Controller Section //
-use App\Http\Controllers\Backend\AdminController;
+// Frontend Controller
+use App\Http\Controllers\Frontend\F_CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::delete('/product/category', [F_CategoryController::class, 'index'])->name('product.index');
 
 require __DIR__ . '/auth.php';

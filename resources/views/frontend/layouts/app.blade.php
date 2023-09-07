@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>OneTech</title>
+	@php
+      $website_info = DB::table('website_settings')->first();
+    @endphp
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  @if ($website_info !== Null)
+  <title>{{ $website_info->website_name }}</title>
+  @else
+  <title>Testing Site</title>
+  @endif
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="OneTech shop project">
@@ -15,6 +24,9 @@
 <link rel="stylesheet" type="text/css" href="{{ asset ('frontend/plugins/slick-1.8.0/slick.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset ('frontend/styles/main_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset ('frontend/styles/responsive.css')}}">
+
+<link rel="stylesheet" type="text/css" href="{{ asset ('frontend/styles/product_styles.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset ('frontend/styles/product_responsive.css')}}">
 
 </head>
 
@@ -73,7 +85,12 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="#">OneTech</a></div>
+							
+							@if ($website_info !== Null)
+								<div class="logo"><a href="{{ url('/') }}">{{ $website_info->website_name }}</a></div>
+							@else
+								<title>Testing Site</title>
+							@endif
 						</div>
 					</div>
 
@@ -144,7 +161,7 @@
 	
 	<!-- Banner -->
 
-	@include('frontend.layouts.partial.banner')
+	
 
 	@yield('content')
 	<!-- Footer -->
@@ -163,6 +180,7 @@
 <script src="{{ asset ('frontend/plugins/slick-1.8.0/slick.js')}}"></script>
 <script src="{{ asset ('frontend/plugins/easing/easing.js')}}"></script>
 <script src="{{ asset ('frontend/js/custom.js')}}"></script>
+<script src="{{ asset ('frontend/js/product_custom.js')}}"></script>
 </body>
 
 </html>
