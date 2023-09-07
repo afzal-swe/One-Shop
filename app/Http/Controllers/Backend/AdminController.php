@@ -17,7 +17,7 @@ class AdminController extends Controller
         if (Auth()->user()->is_admin == 1) {
             return view('backend.layouts.main');
         }
-        return view('frontend.layouts.app');
+        return view('frontend.layouts.main');
 
         $notification = array('message' => 'Login Successfully', 'alert-type' => 'success');
     }

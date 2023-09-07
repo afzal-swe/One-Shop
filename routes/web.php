@@ -18,7 +18,7 @@ use App\Http\Controllers\Backend\AdminController;
 */
 
 Route::get('/', function () {
-    return view('frontend.layouts.app');
+    return view('frontend.layouts.main');
 });
 
 // Route::get('/dashboard', function () {
