@@ -38,9 +38,13 @@
                             <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Product Image</th>
-                                    <th>Product Brand</th>
+                                    <th>Image</th>
+                                    <th>Brand</th>
+                                    <th>Category</th>
+                                    {{-- <th>Subcategory</th> --}}
                                     <th>Product Name</th>
+                                    <th>Featured</th>
+                                    <th>Today Deal</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -51,8 +55,24 @@
                                     <tr>
                                         <td>{{++$key}}</td>
                                         <td><img src="{{ asset($row->images) }}" style="height: 40px; width:60px"></td>
-                                        <td>{{ $row->product_title }}</td>
                                         <td>{{ $row->brand->name }}</td>
+                                        <td>{{ $row->category->category_name }}</td>
+                                        {{-- <td>{{ $row->subcategory->subcategory_name }}</td> --}}
+                                        <td>{{ $row->product_title }}</td>
+                                        <td>
+                                          @if ($row->status == '1')
+                                          <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                          @else
+                                          <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                          @endif
+                                      </td>
+                                        <td>
+                                          @if ($row->status == '1')
+                                          <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                          @else
+                                          <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                          @endif
+                                      </td>
                                         <td>
                                           @if ($row->status == '1')
                                           <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">

@@ -16,9 +16,9 @@
                     <h1 class="banner_text">{{ $banner->product_title }}</h1>
 
 					@if ($banner->discount_price==Null)
-					<div class="banner_price">${{ $banner->product_price }}</div>
+					<div class="banner_price">{{ $setting->currency }}{{ $banner->product_price }}</div>
 					@else
-					<div class="banner_price"><span>${{ $banner->product_price }}</span>${{ $banner->discount_price }}</div>
+					<div class="banner_price"><span>{{ $setting->currency }}{{ $banner->product_price }}</span>${{ $banner->discount_price }}</div>
 					@endif
                     
 

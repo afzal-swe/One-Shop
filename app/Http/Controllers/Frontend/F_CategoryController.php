@@ -16,7 +16,7 @@ class F_CategoryController extends Controller
     public function index()
     {
         $category = Category::where('category_status', 1)->get();
-        $product = Product::where('status', '=', '1')->limit(1)->latest()->first();
+        $product = Product::where('status', '=', '1')->latest()->first();
         // return view('frontend.layouts.main', compact('category', 'product'));
         return view('frontend.layouts.main', compact('category', 'product'));
     }

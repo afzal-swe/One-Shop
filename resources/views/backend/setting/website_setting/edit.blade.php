@@ -67,8 +67,8 @@
                                                 <label for="">Currency</label>
                                                 <select name="currency" id="" class="form-control">
                                                     <option selected disabled>-- Choose Currency --</option>
+                                                    <option value="$" @if ($setting->currency = "$") selected @endif >USD</option>
                                                     <option value="৳" @if ($setting->currency = "৳") selected @endif >Taka</option>
-                                                    <option value="$" {{ ($setting->currency = "$") ? "selected" : "" }} >USD</option>
                                                 </select>
                                             </div>
 

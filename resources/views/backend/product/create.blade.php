@@ -362,4 +362,17 @@
 
 </script>
 
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    })
+
+  })
+  
+</script>
+
 @endsection
