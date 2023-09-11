@@ -5,13 +5,19 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Product;
+
 
 class F_CategoryController extends Controller
 {
     //
 
+
     public function index()
     {
-        return view('frontend.layouts.main_navbar');
+        $category = Category::where('category_status', 1)->get();
+        $product = Product::where('status', '=', '1')->limit(1)->latest()->first();
+        // return view('frontend.layouts.main', compact('category', 'product'));
+        return view('frontend.layouts.main', compact('category', 'product'));
     }
 }

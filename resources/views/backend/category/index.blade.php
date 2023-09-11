@@ -54,19 +54,13 @@
                                         <td>{{ $row->brand->name }}</td>
                                         <td>{{ $row->category_name }}</td>
                                         <td>
-                                            @if ($row->category_status == '1')
-                                            <span class="btn btn-success">Active</span>
-                                            @else
-                                            <span class="btn btn-danger">Inactive</span>
-                                            @endif
-                                        </td>
-                                        <td >
-                                            @if ($row->category_status == '1')
-                                                <a href="#"><i class="fa-solid fa-toggle-on fa-xl" title="Unactive"></i></a>
-                                            @else
-                                                <a href="#"><i class="fa-solid fa-toggle-on"></i></a>
-                                                {{-- <a href="#"><i class="fa-solid fa-toggle-off fa-xl" title="Active"></i></a> --}}
-                                            @endif
+                                          @if ($row->status == '1')
+                                          <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                          @else
+                                          <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                          @endif
+                                      </td>
+                                        <td>
                                             <a href="{{ route('category.edit',$row->id) }}" class="btn btn-info sm" title="Edit Data"><i class="fas fa-edit"></i></a>
                                             <a href="{{ route('category.destroy',$row->id) }}" id="delete" class="btn btn-danger sm delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>
                                         </td>
@@ -151,5 +145,18 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
+
+      <script>
+        $(function () {
+          //Initialize Select2 Elements
+          
+      
+          $("input[data-bootstrap-switch]").each(function(){
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+          })
+      
+        })
+        
+      </script>
 
 @endsection

@@ -43,7 +43,20 @@
   <link rel="stylesheet" href="{{ asset('backend/plugins/toastr/toastr.css')}}">
 
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
-
+   
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="{{ asset ('backend/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}">
+    
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset ('backend/plugins/select2/css/select2.min.css')}}">
+    <link rel="stylesheet" href="{{ asset ('backend/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css')}}">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="{{ asset ('backend/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css')}}">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="{{ asset ('backend/plugins/bs-stepper/css/bs-stepper.min.css')}}">
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="{{ asset ('backend/plugins/dropzone/min/dropzone.min.css')}}">
+   
   
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -126,6 +139,23 @@
 <script src="{{ asset ('backend/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
 
+<!-- Select2 -->
+<script src="{{ asset ('backend/plugins/select2/js/select2.full.min.js')}}"></script>
+<!-- Bootstrap4 Duallistbox -->
+<script src="{{ asset ('backend/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
+<script src="{{ asset ('backend/plugins/inputmask/jquery.inputmask.min.js')}}"></script>
+<!-- bootstrap color picker -->
+<script src="{{ asset ('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+<!-- Bootstrap Switch -->
+<script src="{{ asset ('backend/plugins/bootstrap-switch/js/bootstrap-switch.min.js')}}"></script>
+<!-- BS-Stepper -->
+<script src="{{ asset ('backend/plugins/bs-stepper/js/bs-stepper.min.js')}}"></script>
+<!-- dropzonejs -->
+<script src="{{ asset ('backend/plugins/dropzone/min/dropzone.min.js')}}"></script>
+<!-- AdminLTE App -->
+<script src="{{ asset ('backend/dist/js/adminlte.min.js')}}"></script>
+
+
 
 <!-- Sweet alert init js-->
 <script src="{{ asset('backend/dist/js/sweet-alerts.init.js') }}"></script>
@@ -184,6 +214,7 @@
     });
   })
 </script>
+
 
 </body>
 </html>
