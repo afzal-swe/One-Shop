@@ -1,7 +1,36 @@
 @extends('frontend.layouts.app')
 @section('content')
 
+@php
+ $review_5=App\Models\Review::where('product_id',$product->id)->where('rating',5)->count();
+ $review_4=App\Models\Review::where('product_id',$product->id)->where('rating',4)->count();
+ $review_3=App\Models\Review::where('product_id',$product->id)->where('rating',3)->count();
+ $review_2=App\Models\Review::where('product_id',$product->id)->where('rating',2)->count();
+ $review_1=App\Models\Review::where('product_id',$product->id)->where('rating',1)->count();
 
+ $sum_rating=App\Models\Review::where('product_id',$product->id)->sum('rating');
+ $count_rating=App\Models\Review::where('product_id',$product->id)->count('rating');
+
+//  //Share plugin 
+// 			 // Share button 1
+//          $shareButtons1 = \Share::page(
+//               url()->current()
+//          )
+//          ->facebook()
+//          ->twitter()
+//          ->linkedin()
+//          ->telegram()
+//          ->whatsapp() 
+//          ->reddit();
+
+
+@endphp
+
+<style type="text/css">
+	.checked {
+  color: orange;
+}
+</style>
 
 
 <div class="single_product">
@@ -43,23 +72,59 @@
                     @else
                     <div class="product_category" style="margin-top: 10px;" >Status : <b class="text-success">In Stock - {{ $product->stock_quantity }} {{ $product->product_unit }}</b></div>
                     @endif
+                    <br>
+                    @if($sum_rating !=NULL)	
+					 	@if(intval($sum_rating/$count_rating) == 5)
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star checked"></span>
+					 	@elseif(intval($sum_rating/$count_rating) >= 4 && intval($sum_rating/5) <$count_rating)
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star "></span>
+					 	@elseif(intval($sum_rating/$count_rating) >= 3 && intval($sum_rating/5) <$count_rating)
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star "></span>
+					 	<span class="fa fa-star "></span>
+					 	@elseif(intval($sum_rating/$count_rating) >= 2 && intval($sum_rating/5) <$count_rating)
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star "></span>
+					 	<span class="fa fa-star "></span>
+					 	<span class="fa fa-star "></span>
+					 	@else
+					 	<span class="fa fa-star checked"></span>
+					 	<span class="fa fa-star "></span>
+					 	<span class="fa fa-star "></span>
+					 	<span class="fa fa-star "></span>
+					 	<span class="fa fa-star "></span>
+					 	@endif
+					@endif 	
+					 </div>
+					<div>
 
                    
                     {{-- <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div> --}}
                     @if ($product->discount_price==Null)
-					<div class="product_price" style="margin-top: 25px;">{{ $setting->currency }}{{ $product->product_price }}</div>
+					<div class="product_price" style="margin-top: 25px; margin-left:50px;">{{ $setting->currency }}{{ $product->product_price }}</div>
 					@else
-					<div class="product_price" style="margin-top: 25px;">
+					<div class="product_price" style="margin-top: 25px; margin-left:50px;">
                         <del class="text-danger">{{ $setting->currency }}{{ $product->product_price }}</del> {{ $setting->currency }}{{ $product->discount_price }}</div>
 					@endif
                     {{-- <div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div> --}}
-                    <div class="order_info d-flex flex-row">
+                    <div class="order_info d-flex flex-row ">
                         <form action="#">
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <div class="row">
                                     @isset($product->product_size)
                                     
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-6 ">
                                         <label for="">Sizse</label>
                                         <select class="custom-select form-control-sm" name="size" style="min-width: 120px;">
                                         @foreach ($size as $siz)
@@ -153,8 +218,171 @@
          </div>
         </div>
     </div><br>
-    
 
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-3">
+                Average Review of  {{ $product->product_title }}:<br>
+            @if($sum_rating !=NULL)
+                @if(intval($sum_rating/$count_rating) == 5)
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                @elseif(intval($sum_rating/$count_rating) >= 4 && intval($sum_rating/5) <$count_rating)
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star "></span>
+                @elseif(intval($sum_rating/$count_rating) >= 3 && intval($sum_rating/5) <$count_rating)
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                @elseif(intval($sum_rating/$count_rating) >= 2 && intval($sum_rating/5) <$count_rating)
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                @else
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                <span class="fa fa-star "></span>
+                @endif
+            @endif	
+            </div>
+            <div class="col-md-3">
+                {{-- all review show --}}
+                Total Review Of This Product:<br>
+                            <div>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span> Total {{ $review_5 }} </span>
+                            </div>
+
+                            <div>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star "></span>
+                                <span> Total {{ $review_4 }} </span>
+                            </div>
+
+                            <div>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star "></span>
+                                <span class="fa fa-star "></span>
+                                <span> Total {{ $review_3 }} </span>
+                            </div>
+
+                            <div>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star "></span>
+                                <span class="fa fa-star "></span>
+                                <span class="fa fa-star "></span>
+                                <span> Total {{ $review_2 }} </span>
+                            </div>
+
+                            <div>
+                                <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star "></span>
+                                <span class="fa fa-star "></span>
+                                <span class="fa fa-star "></span>
+                                <span class="fa fa-star "></span>
+                                <span> Total {{ $review_1 }} </span>
+                            </div>
+                            
+                        
+            </div>
+            <div class="col-lg-6">
+                <form action="{{ route('store.review') }}" method="post">
+                    @csrf
+                  <div class="form-group">
+                    <label for="details">Write Your Review</label>
+                    <textarea type="text" class="form-control" name="review" required=""></textarea>
+                  </div>
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                  <div class="form-group ">
+                    <label for="review">Write Your Review</label>
+                     <select class="custom-select form-control-sm" name="rating" style="min-width: 120px;">
+                         <option disabled="" selected="">Select Your Review</option>
+                         <option value="1">1 star</option>
+                         <option value="2">2 star</option>
+                         <option value="3">3 star</option>
+                         <option value="5">4 star</option>
+                         <option value="5">5 star</option>
+                     </select> 
+                     
+                  </div>
+                  @if(Auth::check())
+                  <button type="submit" class="btn btn-sm btn-info"><span class="fa fa-star "></span> submit review</button>
+                  @else
+                   <p>Please at first login to your account for submit a review.</p>
+                  @endif
+                </form>
+            </div>
+        </div>
+            <br>
+    
+        {{-- all review of this product --}}	
+						<strong>All review of {{ $product->product_title }}</strong> <hr>
+                        <div class="row">
+                            @foreach($review as $row)
+                                <div class="card col-lg-5 m-2">
+                                  <div class="card-header">
+                                          {{ $row->user->name }}  ( {{ date('d F , Y'), strtotime($row->review_date) }} )
+                                  </div>
+                                  <div class="card-body">
+                                          {{ $row->review }}
+                                            @if($row->rating==5)
+                                            <div>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                            </div>
+                                            @elseif($row->rating==4)
+                                            <div>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                            </div>
+                                            @elseif($row->rating==3)
+                                            <div>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                            </div>
+                                            @elseif($row->rating==2)
+                                            <div>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                            </div>
+                                            @elseif($row->rating==1)
+                                            <div>
+                                                <span class="fa fa-star checked"></span>
+                                            </div>
+                                            @endif
+                                  </div>
+                             </div>
+                          @endforeach
+                        </div>	
 
         </div>
     </div>

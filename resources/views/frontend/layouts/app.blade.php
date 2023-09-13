@@ -28,6 +28,8 @@
 <link rel="stylesheet" type="text/css" href="{{ asset ('frontend/styles/product_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset ('frontend/styles/product_responsive.css')}}">
 
+<link rel="stylesheet" href="{{ asset('backend/plugins/toastr/toastr.css')}}">
+
 
 
 </head>
@@ -67,11 +69,57 @@
 									</li>
 								</ul>
 							</div>
-							<div class="top_bar_user">
-								<div class="user_icon"><img src="{{ asset ('frontend/images/user.svg')}}" alt=""></div>
-								<div><a href="{{ route('register') }}">Register</a></div>
-								<div><a href="{{ route('login') }}">Sign in</a></div>
+
+							@if(Auth::check())
+							<div class="top_bar_user" style="margin-top: -80px;">
+								{{-- <div class="user_icon"><img src="{{ asset ('frontend/images/user.svg')}}" alt=""></div> --}}
+								
+									<ul class="standard_dropdown top_bar_dropdown" style="width: 200px; padding:10px;">
+										<li>
+											<a href="">{{ Auth::user()->name }}<i class="fas fa-chevron-down"></i></a>
+											<ul style="width: 200px;">
+												<li><a href="">Profile</a></li>
+												<li><a href="">Setting</a></li>
+												<li><a href="">Order List</a></li>
+												<li><a href="">
+													<form method="POST" action="{{ route('logout') }}">
+														@csrf
+								
+														<x-dropdown-link :href="route('logout')"
+																onclick="event.preventDefault();
+																			this.closest('form').submit();">
+															<p class="nav-link active">Sing Out</p>
+														</x-dropdown-link>
+													</form>       
+													</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+
+									{{-- <div><a href="{{ route('logout') }}">Sign Out</a></div> --}}
+
+									{{-- <div>
+										<form method="POST" action="{{ route('logout') }}">
+											@csrf
+					
+											<x-dropdown-link :href="route('logout')"
+													onclick="event.preventDefault();
+																this.closest('form').submit();">
+												<p class="nav-link active">Sing Out</p>
+											</x-dropdown-link>
+										</form>         
+									</div> --}}
+								
 							</div>
+							@endif
+
+							@guest
+								<div class="top_bar_menu top_bar_user">
+									<div><a href="{{ route('register') }}">Register | </a></div>
+								<div><a href="{{ route('login') }}">Sign in</a></div>
+								</div>
+							@endguest
 						</div>
 					</div>
 				</div>
@@ -183,6 +231,28 @@
 <script src="{{ asset ('frontend/plugins/easing/easing.js')}}"></script>
 <script src="{{ asset ('frontend/js/custom.js')}}"></script>
 <script src="{{ asset ('frontend/js/product_custom.js')}}"></script>
+
+<script src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
+
+<script>
+	@if (Session::has('messege'))
+	var type="{{Session::get('alert-type','info')}}"
+	switch(type){
+		case 'info':
+			toastr.info("{{ Session::get('messege') }}");
+			break;
+		case 'success':
+			toastr.success("{{ Session::get('messege') }}");
+			break;
+		case 'warning':
+			toastr.warning("{{ Session::get('messege') }}");
+			break;
+		case 'error':
+			toastr.error("{{ Session::get('messege') }}");
+			break;
+	}   
+	@endif
+  </script>
 </body>
 
 </html>

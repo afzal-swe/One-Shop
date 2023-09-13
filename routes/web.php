@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 // Frontend Controller
 use App\Http\Controllers\Frontend\F_CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,5 +39,9 @@ Route::get('/product/category', [F_CategoryController::class, 'index'])->name('p
 
 // Index Controller route
 Route::get('/product/details/{slug}', [IndexController::class, 'index'])->name('product.details');
+
+
+// Reviews Controller route
+Route::post('/review/store', [ReviewController::class, 'store'])->name('store.review');
 
 require __DIR__ . '/auth.php';
