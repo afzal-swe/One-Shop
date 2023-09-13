@@ -31,4 +31,9 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class, 'brand_id');
     }
+
+    public function pickpoint()
+    {
+        return $this->belongsTo(Piceup_point::class, 'pickup_point');
+    }
 }

@@ -12,7 +12,7 @@ class F_CategoryController extends Controller
 {
     //
 
-
+    // root page
     public function index()
     {
         $category = Category::where('category_status', 1)->get();
@@ -20,4 +20,6 @@ class F_CategoryController extends Controller
         // return view('frontend.layouts.main', compact('category', 'product'));
         return view('frontend.layouts.main', compact('category', 'product'));
     }
+
+    // Singleproduct page calling
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // Frontend Controller
 use App\Http\Controllers\Frontend\F_CategoryController;
+use App\Http\Controllers\Frontend\IndexController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/product/category', [F_CategoryController::class, 'index'])->name('product.index');
+
+// Index Controller route
+Route::get('/product/details/{slug}', [IndexController::class, 'index'])->name('product.details');
 
 require __DIR__ . '/auth.php';

@@ -23,7 +23,7 @@
                     
 
                     <div class="banner_product_name">Apple Iphone 6s</div>
-                    <div class="button banner_button"><a href="#">Shop Now</a></div>
+                    <div class="button banner_button"><a href="{{ route('product.details',$banner->slug) }}">Shop Now</a></div>
                 </div>
             </div>
         </div>
