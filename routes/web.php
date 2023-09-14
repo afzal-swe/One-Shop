@@ -43,5 +43,7 @@ Route::get('/product/details/{slug}', [IndexController::class, 'index'])->name('
 
 // Reviews Controller route
 Route::post('/review/store', [ReviewController::class, 'store'])->name('store.review');
+// Wishlist route section
+Route::get('/wishlist/store/{id}', [ReviewController::class, 'store_wishlist'])->name('add.wishlist')->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';

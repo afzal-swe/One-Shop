@@ -112,21 +112,21 @@
                    
                     {{-- <div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div> --}}
                     @if ($product->discount_price==Null)
-					<div class="product_price" style="margin-top: 25px; margin-left:50px;">{{ $setting->currency }}{{ $product->product_price }}</div>
+					<div class="product_price" style="margin-top: 18px; margin-left:50px;">{{ $setting->currency }}{{ $product->product_price }}</div>
 					@else
-					<div class="product_price" style="margin-top: 25px; margin-left:50px;">
+					<div class="product_price" style="margin-top: 18px; margin-left:50px;">
                         <del class="text-danger">{{ $setting->currency }}{{ $product->product_price }}</del> {{ $setting->currency }}{{ $product->discount_price }}</div>
 					@endif
                     {{-- <div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div> --}}
-                    <div class="order_info d-flex flex-row ">
+                    <div class="order_info d-flex flex-row " style="margin-top: 18px; margin-left:50px;">
                         <form action="#">
                             <div class="form-group ">
                                 <div class="row">
                                     @isset($product->product_size)
                                     
                                     <div class="col-lg-6 ">
-                                        <label for="">Sizse</label>
-                                        <select class="custom-select form-control-sm" name="size" style="min-width: 120px;">
+                                        <label for="" style="margin-left:8px;">Sizse</label>
+                                        <select class="custom-select form-control-sm" name="size" style="min-width: 120px; ">
                                         @foreach ($size as $siz)
                                             <option value="{{ $siz }}">{{ $siz }}</option>
                                         @endforeach
@@ -136,7 +136,7 @@
                                     @endisset
                                     @isset($product->product_color)
                                     <div class="col-lg-6">
-                                        <label for="exampleInputEmail1">Color <span class="text-danger">*</span> </label>
+                                        <label for="exampleInputEmail1" style="margin-left:8px;">Color <span class="text-danger">*</span> </label>
                                             <select class="custom-select form-control-sm" name="color" style="min-width: 120px;">
                                                 <option selected disabled>Choose Color</option>
                                                     @foreach ($color as $col)
@@ -147,8 +147,8 @@
                                     </div>
                                     @endisset
                                 </div>
-                            </div><br>
-                            <div class="clearfix" style="z-index: 1000;">
+                            </div>
+                            <div class="clearfix" style="z-index: 1000; margin-left:-5px;">
 
                                 <!-- Product Quantity -->
                                 <div class="product_quantity clearfix ml-3">
@@ -178,9 +178,13 @@
                             </div>
 
                            
-                            <div class="button_container">
-                                <button type="button" class="button cart_button">Add to Cart</button>
-                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                            <div class="button_container" style="margin-top: 5px">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-info" type="submit" >Add to cart</button>
+                                        <a href="{{ route('add.wishlist',$product->id) }}" class="btn btn-outline-primary" type="button">Add to wishlist</a>
+                                    </div>
+                                </div>
                             </div>
                             
                         </form>
