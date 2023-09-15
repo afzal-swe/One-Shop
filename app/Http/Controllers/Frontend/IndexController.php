@@ -19,7 +19,8 @@ class IndexController extends Controller
         $view_product = Product::where('slug', $slug)->increment('product_views');
         $review = Review::orderBy('id', 'DESC')->limit(6)->get();
         $related_product = Product::where('subcategory_id', $product->subcategory_id)->orderBy('id', 'DESC')->limit(10)->get();
-        $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(8)->get();
-        return view('frontend.product.product_details', compact('product', 'related_product', 'review', 'featured'));
+        $featured = Product::where('status', 1)->orderBy('id', 'DESC')->limit(8)->get();
+        $popular_product = Product::where('status', 1)->orderBy('product_views', 'DESC')->limit(8)->get();
+        return view('frontend.product.product_details', compact('product', 'related_product', 'review', 'featured', 'popular_product'));
     }
 }
