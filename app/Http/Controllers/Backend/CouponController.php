@@ -35,6 +35,7 @@ class CouponController extends Controller
     {
         $request->validate([
             'coupon_code' => 'required',
+            'coupon_amount' => 'required',
         ]);
 
         Coupon::insert([

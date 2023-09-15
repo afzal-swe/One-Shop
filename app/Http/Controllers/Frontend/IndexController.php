@@ -16,6 +16,7 @@ class IndexController extends Controller
     public function index($slug)
     {
         $product = Product::where('slug', $slug)->first();
+        $view_product = Product::where('slug', $slug)->increment('product_views');
         $review = Review::orderBy('id', 'DESC')->limit(6)->get();
         $related_product = Product::where('subcategory_id', $product->subcategory_id)->orderBy('id', 'DESC')->limit(10)->get();
         $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(8)->get();

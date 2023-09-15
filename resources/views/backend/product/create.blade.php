@@ -74,7 +74,7 @@
                   </div>
                   <div class="row">
                     <div class="form-group col-lg-6">
-                      <label for="exampleInputEmail1">Category/Subcategory <span class="text-danger">*</span> </label>
+                      <label for="exampleInputEmail1">Category <span class="text-danger">*</span> </label>
                       <select class="form-control" name="category_id" id="subcategory_id">
                         <option disabled="" selected="">==choose category==</option>
                         @foreach($category as $row)
@@ -86,9 +86,9 @@
                     </div>
 
                     <div class="form-group col-lg-6">
-                      <label for="exampleInputEmail1">Category/Subcategory <span class="text-danger">*</span> </label>
+                      <label for="exampleInputEmail1">Subcategory <span class="text-danger">*</span> </label>
                       <select class="form-control" name="subcategory_id" id="subcategory_id">
-                        <option disabled="" selected="">==choose category==</option>
+                        <option disabled="" selected="">==choose Subcategory==</option>
                         @foreach($category as $row)
                            @php 
                               $subcategory=DB::table('sub_categories')->where('category_id',$row->id)->get();
@@ -278,6 +278,11 @@
 
                      <div class="card p-4">
                         <h6>Flash Deal</h6><hr>
+                       <div><span> Status </span> <input type="checkbox" name="flash_deal_id" value="1" data-bootstrap-switch data-off-color="danger" data-on-color="success" class="btn" style="margin-left: 20px;"></div>
+                     </div>
+
+                     <div class="card p-4">
+                        <h6>Trendy Product</h6><hr>
                        <div><span> Status </span> <input type="checkbox" name="flash_deal_id" value="1" data-bootstrap-switch data-off-color="danger" data-on-color="success" class="btn" style="margin-left: 20px;"></div>
                      </div>
 

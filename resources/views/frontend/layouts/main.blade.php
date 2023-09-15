@@ -5,30 +5,34 @@
 	$banner = DB::table('products')->where('status', '=', '1')->latest()->first();
 @endphp
 
-<div class="banner">
-    <div class="banner_background" style="background-image:url(frontend/images/banner_background.jpg)"></div>
-    <div class="container fill_height">
-        <div class="row fill_height">
-            <div class="banner_product_image"><img src="{{ asset ('frontend/images/banner_product.png')}}" alt=""></div>
-			{{-- <div class="banner_product_image"><img src="{{ asset ($banner->thumbnail)}}" alt="{{ $banner->product_title }}"></div> --}}
-            <div class="col-lg-5 offset-lg-4 fill_height">
-                <div class="banner_content">
-                    <h1 class="banner_text">{{ substr($banner->product_title,0,20) }}</h1>
+@if ($banner == Null)
+	{{-- <div>Side Empty</div> --}}
+@else
+	<div class="banner">
+		<div class="banner_background" style="background-image:url(frontend/images/banner_background.jpg)"></div>
+		<div class="container fill_height">
+			<div class="row fill_height">
+				<div class="banner_product_image"><img src="{{ asset ('frontend/images/banner_product.png')}}" alt=""></div>
+				{{-- <div class="banner_product_image"><img src="{{ asset ($banner->thumbnail)}}" alt="{{ $banner->product_title }}"></div> --}}
+				<div class="col-lg-5 offset-lg-4 fill_height">
+					<div class="banner_content">
+						<h1 class="banner_text">{{ substr($banner->product_title,0,20) }}</h1>
 
-					@if ($banner->discount_price==Null)
-					<div class="banner_price">${{ $banner->product_price }}</div>
-					@else
-					<div class="banner_price"><span>${{ $banner->product_price }}</span>${{ $banner->discount_price }}</div>
-					@endif
-                    
+						@if ($banner->discount_price==Null)
+						<div class="banner_price">${{ $banner->product_price }}</div>
+						@else
+						<div class="banner_price"><span>${{ $banner->product_price }}</span>${{ $banner->discount_price }}</div>
+						@endif
+						
 
-                    <div class="banner_product_name">Apple Iphone 6s</div>
-                    <div class="button banner_button"><a href="{{ route('product.details',$banner->slug) }}">Shop Now</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+						<div class="banner_product_name">Apple Iphone 6s</div>
+						<div class="button banner_button"><a href="{{ route('product.details',$banner->slug) }}">Shop Now</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+@endif
     	<!-- Characteristics -->
 	<div class="characteristics">
 		<div class="container">

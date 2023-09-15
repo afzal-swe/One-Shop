@@ -43,6 +43,8 @@ return new class extends Migration
             $table->integer('admin_id')->nullable();
             $table->string('warehouse')->nullable();
             $table->integer('pickup_point')->nullable();
+            $table->integer('product_views')->nullable()->default(0);
+            $table->integer('trendy')->nullable()->default(0);
             $table->integer('status')->nullable()->default(0);
             $table->timestamps();
         });

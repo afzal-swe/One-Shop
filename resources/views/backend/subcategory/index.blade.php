@@ -112,18 +112,24 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Category Name <span class="text-danger">*</span></label>
-                            <select name="category_id" id="" class="form-control  @error('category_id') is-invalid @enderror " required>
-                              <option value="" selected disabled>Choose Category</option>
-                                @foreach ($category as $row)
-                                <option value="{{ $row->id }}">{{ $row->category_name }}</option>
-                                @endforeach
-                            </select>
-                            @error('category_id')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                          <label for="exampleInputEmail1">Category Name <span class="text-danger">*</span> </label>
+                          <select name="category_id" id="" class="form-control  @error('category_id') is-invalid @enderror " required>
+                            <option disabled="" selected="">==choose Category==</option>
+                            @foreach($brand as $row)
+                               @php 
+                                  $category=DB::table('categories')->where('brand_id',$row->id)->get();
+                               @endphp
+                               <option style="color:blue;" disabled="">{{ $row->name }}</option>
+                                  @foreach($category as $row)
+                                    <option value="{{ $row->id }}"> -- {{ $row->category_name }}</option>
+                                  @endforeach
+                            @endforeach 
+                          </select>
+                          @error('category_id')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
                         </div>
 
                         <div class="form-group">
