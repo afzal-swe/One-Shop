@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\WarehouseController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\Pickup_pointController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\CampaignController;
 
 
 
@@ -117,6 +118,13 @@ Route::get('/coupon', [CouponController::class, 'index'])->name('coupon.index')-
 Route::post('/coupon/store', [CouponController::class, 'store'])->name('coupon.store')->middleware(['auth', 'verified']);
 Route::get('/coupon/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit')->middleware(['auth', 'verified']);
 Route::get('/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy')->middleware(['auth', 'verified']);
+
+
+// Campaign Route Section Start ===========================================================
+Route::get('/campaign', [CampaignController::class, 'index'])->name('campaign.index')->middleware(['auth', 'verified']);
+// Route::post('/coupon/store', [CouponController::class, 'store'])->name('coupon.store')->middleware(['auth', 'verified']);
+// Route::get('/coupon/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit')->middleware(['auth', 'verified']);
+// Route::get('/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy')->middleware(['auth', 'verified']);
 
 // Pickup Point Route Section Start ===========================================================
 Route::get('/pickup', [Pickup_pointController::class, 'index'])->name('pickup_point.index')->middleware(['auth', 'verified']);
