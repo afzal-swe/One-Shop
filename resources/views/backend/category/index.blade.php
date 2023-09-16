@@ -38,9 +38,10 @@
                             <thead>
                                 <tr>
                                     <th>SL</th>
-                                    <th>Category Image</th>
+                                    <th>Icon</th>
                                     <th>Brand Name</th>
                                     <th>Category Name</th>
+                                    <th>Home Page</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -53,6 +54,13 @@
                                         <td><img src="{{ asset($row->image) }}" style="height: 40px; width:60px"></td>
                                         <td>{{ $row->brand->name }}</td>
                                         <td>{{ $row->category_name }}</td>
+                                        <td>
+                                          @if ($row->home_page == '1')
+                                          <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                          @else
+                                          <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
+                                          @endif
+                                      </td>
                                         <td>
                                           @if ($row->status == '1')
                                           <input type="checkbox" name="my-checkbox" checked data-bootstrap-switch data-off-color="danger" data-on-color="success">
@@ -132,6 +140,7 @@
                           </div>
                         </div>
    
+                        <input type="checkbox" name="home_page" value="1"><span> Home Page</span><br>
                         <input type="checkbox" name="category_status" value="1"><span> Publication</span><br>
                            
                         <div class="card-footer">

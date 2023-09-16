@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('brand_id')->constrained('brands')->cascadeOnDelete();
             $table->string('category_name');
+            $table->string('home_page')->nullable();
             $table->string('category_slug')->nullable();
             $table->integer('category_status')->nullable()->default(0);
             $table->string('image');

@@ -34,13 +34,14 @@ class CategoryController extends Controller
             $img = $request->image;
 
             $name_gen = $slug . '.' . $img->getClientOriginalExtension();
-            Image::make($img)->resize(240, 120)->save("image/category/" . $name_gen);
+            Image::make($img)->resize(32, 32)->save("image/category/" . $name_gen);
 
             $save_img = "image/category/" . $name_gen;
 
             Category::insert([
                 'brand_id' => $request->brand_id,
                 'category_name' => $request->category_name,
+                'home_page' => $request->home_page,
                 'category_status' => $request->category_status,
                 'category_slug' => $slug,
                 'image' => $save_img,
