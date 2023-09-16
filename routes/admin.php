@@ -122,7 +122,7 @@ Route::get('/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('c
 
 // Campaign Route Section Start ===========================================================
 Route::get('/campaign', [CampaignController::class, 'index'])->name('campaign.index')->middleware(['auth', 'verified']);
-// Route::post('/coupon/store', [CouponController::class, 'store'])->name('coupon.store')->middleware(['auth', 'verified']);
+Route::post('/campaign/store', [CampaignController::class, 'store'])->name('campaign.store')->middleware(['auth', 'verified']);
 // Route::get('/coupon/edit/{id}', [CouponController::class, 'edit'])->name('coupon.edit')->middleware(['auth', 'verified']);
 // Route::get('/coupon/delete/{id}', [CouponController::class, 'destroy'])->name('coupon.destroy')->middleware(['auth', 'verified']);
 

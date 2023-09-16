@@ -20,6 +20,13 @@ class CampaignController extends Controller
             $data = DB::table('campaigns')->orderBy('id', 'DESC')->get();
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('status', function ($row) {
+                    if ($row->status == 1) {
+                        return '<a href="#"><span class="badge badge-success">Active</span></a>';
+                    } else {
+                        return '<a href="#"><span class="badge badge-danger">Inactive</span></a>';
+                    }
+                })
                 ->addColumn('action', function ($row) {
 
                     $actionbtn = '<a href="#" class="btn btn-info btn-sm edit" data-id="" data-toggle="modal" data-target="#editModal"  title="Edit Data"><i class="fas fa-edit"></i></a>
@@ -27,9 +34,43 @@ class CampaignController extends Controller
 
                     return $actionbtn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action', 'status'])
                 ->make(true);
         }
         return view('backend.offer.campaign.index');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|unique:campaigns|max:50',
+            'image' => 'required',
+        ]);
+
+        if ($request->file('image')) {
+
+            $name = Str::of($request->title)->slug('-');
+
+            $img = $request->file('image');
+            $name_gen = $name . '.' . $img->getClientOriginalExtension();
+            Image::make($img)->resize(468, 90)->save("image/campaign/" . $name_gen);
+            $save_img = "image/campaign/" . $name_gen;
+
+            Campaign::insert([
+                'title' => $request->title,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
+                'discount' => $request->discount,
+                'slug' => $name,
+                'image' => $save_img,
+                'month' => date('F'),
+                'year' => date('Y'),
+                'status' => $request->status,
+                'created_at' => Carbon::now(),
+
+            ]);
+            $notification = array('messege' => 'Campaign Create Successfully', 'alert-type' => 'success');
+            return redirect()->back()->with($notification);
+        }
     }
 }

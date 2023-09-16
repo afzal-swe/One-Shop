@@ -67,40 +67,55 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Create New Coupon</h4>
+              <h4 class="modal-title">Create New Campaign</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('coupon.store') }}" method="post" id="add-form">
+                <form action="{{ route('campaign.store') }}" method="post" id="add-form" enctype="multipart/form-data">
                     @csrf
 
                     <div class="card-body">
 
                         <div class="form-group">
-                            <label for="coupon_code">Coupone Code </label>
-                            <input type="text" name="coupon_code" class="form-control " placeholder="Coupone Code" value="{{old('coupon_code')}}" required>
+                            <label for="coupon_code">Campaign Title  <samp class="text-danger">*</samp></label>
+                            <input type="text" name="title" class="form-control " placeholder="Campaign Title" value="{{old('title')}}" required>
                         </div>
 
-                        <div class="form-group">
-                            <label for="type">Coupone Type </label>
-                            <select name="type" class="form-control" id="" required>
-                                <option selected disabled>-- Choose Type --</option>
-                                <option value="1">Fixed</option>
-                                <option value="2">Percentage</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="type">Start Date <samp class="text-danger">*</samp></label>
+                                    <input type="date" class="form-control" name="start_date"  required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="type">End Date <samp class="text-danger">*</samp></label>
+                                    <input type="date" class="form-control" name="end_date" required>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="coupon_amount">Coupone Amount </label>
-                            <input type="text" name="coupon_amount" class="form-control " placeholder="Coupone Amount" value="{{old('coupon_amount')}}" required>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="type">Discount (%)<samp class="text-danger">*</samp></label>
+                                    <input type="text" class="form-control" name="discount" required>
+                                    <small class="form-text text-danger">Discount percentage are apply for all product selling price</small>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="type">Image <samp class="text-danger">*</samp></label>
+                                    <input type="file" class="form-control" name="image" required>
+                                    <small class="form-text">This is your campaign banner</small>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="valid_date">Valid Date </label>
-                            <input type="date" name="valid_date" class="form-control " placeholder="Valid Date" value="{{old('valid_date')}}" required>
-                        </div>
+                        
 
                         <input type="checkbox" name="status" value="1"><span> Publication</span><br>
                            
