@@ -30,7 +30,7 @@ class CampaignController extends Controller
                 ->addColumn('action', function ($row) {
 
                     $actionbtn = '<a href="#" class="btn btn-info btn-sm edit" data-id="" data-toggle="modal" data-target="#editModal"  title="Edit Data"><i class="fas fa-edit"></i></a>
-                <a href="#" id="delete" class="btn btn-danger btn-sm delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>';
+                <a href="' . route('campaign.destroy', $row->id) . '" id="delete" class="btn btn-danger btn-sm delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>';
 
                     return $actionbtn;
                 })
@@ -70,6 +70,21 @@ class CampaignController extends Controller
 
             ]);
             $notification = array('messege' => 'Campaign Create Successfully', 'alert-type' => 'success');
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function destroy($id)
+    {
+        $file = Campaign::findOrFail($id);
+
+        if ($file !== 'image') {
+            $img = $file->image;
+            unlink($img);
+
+            Campaign::findOrFail($id)->delete();
+
+            $notification = array('messege' => 'Campaign Delete Successfully', 'alert-type' => 'success');
             return redirect()->back()->with($notification);
         }
     }
