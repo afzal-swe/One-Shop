@@ -389,6 +389,7 @@
 	</div>
 
 	<!-- Banner -->
+	
 
 	{{-- <div class="banner_2">
 		<div class="banner_2_background" style="background-image:url(frontend/images/banner_2_background.jpg)"></div>
@@ -1594,8 +1595,10 @@
 	</div>
 
 	<!-- Brands -->
-
-	{{-- <div class="brands">
+	@php
+		$brand = DB::table('brands')->inRandomOrder()->limit(12)->get();
+	@endphp
+	<div class="brands">
 		<div class="container">
 			<div class="row">
 				<div class="col">
@@ -1604,16 +1607,15 @@
 						<!-- Brands Slider -->
 
 						<div class="owl-carousel owl-theme brands_slider">
-							
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset ('frontend/images/brands_1.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset ('frontend/images/brands_2.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset ('frontend/images/brands_3.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset ('frontend/images/brands_4.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset ('frontend/images/brands_5.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset ('frontend/images/brands_6.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset ('frontend/images/brands_7.jpg')}}" alt=""></div></div>
-							<div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset ('frontend/images/brands_8.jpg')}}" alt=""></div></div>
-
+							@foreach ($brand as $row)
+								<div class="owl-item">
+									<div class="brands_item d-flex flex-column justify-content-center">
+										<a href="#" title="{{ $row->name }}">
+											<img src="{{ asset ($row->image)}}" alt="{{ $row->name }}" height="50" width="40">
+										</a>
+									</div>
+								</div>
+							@endforeach
 						</div>
 						
 						<!-- Brands Slider Navigation -->
@@ -1624,7 +1626,7 @@
 				</div>
 			</div>
 		</div>
-	</div> --}}
+	</div>
 
 	<!-- Newsletter -->
 
