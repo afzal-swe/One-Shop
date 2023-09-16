@@ -131,10 +131,11 @@
         <!-- /.modal-dialog -->
     </div>
 
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script type="text/javascript">
-
+        // View All Data in Campaign Section
         $(function c(){
             var table=$('.ytable').DataTable({
                 processing:true,
@@ -142,7 +143,7 @@
                 ajax:"{{ route('campaign.index') }}",
                 columns:[
                     {data:'DT_RowIndex',name:'DT_RowIndex'},
-                    {data:'image',name:'image'},
+                    {data:'image',name:'image', render:function(data, type, full, meta) {return "<img src=\""+data+"\" height=\"30\"/>";}},
                     {data:'title',name:'title'},
                     {data:'discount',name:'discount'},
                     {data:'start_date',name:'start_date'},
@@ -152,6 +153,14 @@
                     {data:'status',name:'status'},
                     {data:'action',name:'action',orderable:true, searchable:true},
                 ]
+            });
+        });
+
+        // // Edit Campaign Section
+        $('body').on('click','.edit',function(){
+            let id=$(this).data('id');
+            $.get("campaign/edit/"+id, function(data){
+                $('#modal_body').html(data);
             });
         });
 

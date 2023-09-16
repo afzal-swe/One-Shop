@@ -13,7 +13,7 @@ use Yajra\DataTables\DataTables;
 
 class CampaignController extends Controller
 {
-    //
+    // Campaign All Info Show this function
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -29,7 +29,7 @@ class CampaignController extends Controller
                 })
                 ->addColumn('action', function ($row) {
 
-                    $actionbtn = '<a href="#" class="btn btn-info btn-sm edit" data-id="" data-toggle="modal" data-target="#editModal"  title="Edit Data"><i class="fas fa-edit"></i></a>
+                    $actionbtn = '<a href="#" class="btn btn-info btn-sm edit" data-id="' . $row->id . '" data-toggle="modal" data-target="#editModal"  title="Edit Data"><i class="fas fa-edit"></i></a>
                 <a href="' . route('campaign.destroy', $row->id) . '" id="delete" class="btn btn-danger btn-sm delete" title="Delete Data"><i class="fas fa-trash-alt"></i></a>';
 
                     return $actionbtn;
@@ -39,6 +39,8 @@ class CampaignController extends Controller
         }
         return view('backend.offer.campaign.index');
     }
+
+    // Store Campaign in this function
 
     public function store(Request $request)
     {
@@ -74,6 +76,9 @@ class CampaignController extends Controller
         }
     }
 
+
+    // Delete Campaign Function
+
     public function destroy($id)
     {
         $file = Campaign::findOrFail($id);
@@ -87,5 +92,13 @@ class CampaignController extends Controller
             $notification = array('messege' => 'Campaign Delete Successfully', 'alert-type' => 'success');
             return redirect()->back()->with($notification);
         }
+    }
+
+
+    // Edit Campaign Function
+    public function edit($id)
+    {
+        $update = Campaign::find($id);
+        return view('backend.category.edit', compact('update'));
     }
 }
