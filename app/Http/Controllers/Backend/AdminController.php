@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
 
 
 class AdminController extends Controller
@@ -14,10 +16,11 @@ class AdminController extends Controller
 
     public function supper_admin()
     {
+        $today_deal = DB::table('products')->where('status', 1)->where('today_deal', 1)->orderBy('today_deal', 'DESC')->limit(5)->get();
         if (Auth()->user()->is_admin == 1) {
             return view('backend.layouts.main');
         }
-        return view('frontend.layouts.main');
+        return view('frontend.layouts.main', compact('today_deal'));
 
         $notification = array('message' => 'Login Successfully', 'alert-type' => 'success');
     }
