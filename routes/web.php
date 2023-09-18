@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\F_CategoryController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\ReviewController;
+use App\Http\Controllers\Frontend\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +46,8 @@ Route::get('/product/details/{slug}', [IndexController::class, 'index'])->name('
 Route::post('/review/store', [ReviewController::class, 'store'])->name('store.review');
 // Wishlist route section
 Route::get('/wishlist/store/{id}', [ReviewController::class, 'store_wishlist'])->name('add.wishlist')->middleware(['auth', 'verified']);
+
+// Add to cart route section
+Route::get('/add/cart/{id}', [CartController::class, 'add_to_cart'])->name('add.to.cart')->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';

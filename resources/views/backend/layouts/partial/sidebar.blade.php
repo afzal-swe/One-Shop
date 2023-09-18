@@ -182,6 +182,18 @@
                   <p>Customers Information</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="pages/forms/general.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Customers Wishlist</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/forms/general.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Customers Add to cart</p>
+                </a>
+              </li>
             </ul>
           </li>
           {{-- Customers Section End --}}

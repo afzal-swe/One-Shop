@@ -119,7 +119,15 @@
 					@endif
                     {{-- <div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div> --}}
                     <div class="order_info d-flex flex-row " style="margin-top: 18px; margin-left:50px;">
-                        <form action="#">
+                        <form action="{{ route('add.to.cart',$product->id) }}" method="" id="add_cart_form" enctype="multipart/form-data">
+                            @csrf
+                            {{-- Cart Add Details --}}
+                            <input type="hidden" name="id" value="{{ $product->id }}">
+                            @if ($product->discount_price==Null)
+                            <input type="hidden" name="price" value="{{ $product->product_price }}">
+                            @else
+                            <input type="hidden" name="price" value="{{ $product->discount_price }}">
+                            @endif
                             <div class="form-group ">
                                 <div class="row">
                                     @isset($product->product_size)
@@ -181,7 +189,7 @@
                             <div class="button_container" style="margin-top: 5px">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-outline-info" type="submit" >Add to cart</button>
+                                        <button class="btn btn-outline-info" type="submit" ><span class="loading d-none">...</span>Add to cart</button>
                                         <a href="{{ route('add.wishlist',$product->id) }}" class="btn btn-outline-primary" type="button">Add to wishlist</a>
                                     </div>
                                 </div>
