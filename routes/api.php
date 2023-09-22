@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/users/{id?}', [UserController::class, 'showUser']); // id ? = ? means optional , we are show single user or multi user showing. (get/fetch)
+Route::post('/users/store', [UserController::class, 'store']);
 
 // Brand Route Section Start ==============================================================
 Route::get('/brands/{id?}', [BrandApiController::class, 'index']);
