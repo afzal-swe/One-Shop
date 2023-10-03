@@ -40,6 +40,17 @@ Route::delete('/delete-multiple-record/{ids}', [UserController::class, 'DeleteMu
 // Delete API for Delete Multiple user with json Route ::::::::::::::::::::::
 Route::delete('/delete-multiple-record-with-json', [UserController::class, 'DeleteMultipleRecordJson']);
 
+
+
+// Page Api Route Section Start ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+use App\Http\Controllers\Api\PageApiController;
+
+// Single or Multi Data Show api Route.::::::::::::::
+Route::get('/page/{id?}', [PageApiController::class, 'ShowPage']);
+Route::post('/store/page', [PageApiController::class, 'store']);
+Route::delete('/delete/page/{id}', [PageApiController::class, 'destroy']);
+Route::patch('/update/page/{id}', [PageApiController::class, 'update']);
+
 // Brand Route Section Start ==============================================================
 Route::get('/brands/{id?}', [BrandApiController::class, 'index']);
 Route::post('/add/brand', [BrandApiController::class, 'store']);
