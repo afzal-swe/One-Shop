@@ -119,7 +119,7 @@
 					@endif
                     {{-- <div class="product_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.</p></div> --}}
                     <div class="order_info d-flex flex-row " style="margin-top: 18px; margin-left:50px;">
-                        <form action="{{ route('add.to.cart',$product->id) }}" method="" id="add_cart_form" enctype="multipart/form-data">
+                        <form action="{{ route('add.to.cart',$product->id) }}" method="post" id="add_cart_form" enctype="multipart/form-data">
                             @csrf
                             {{-- Cart Add Details --}}
                             <input type="hidden" name="id" value="{{ $product->id }}">
@@ -161,7 +161,7 @@
                                 <!-- Product Quantity -->
                                 <div class="product_quantity clearfix ml-3">
                                     <span>Quantity: </span>
-                                    <input class="form-control form-control-sm" id="quantity_input" type="text" pattern="[1-9]*" value="1">
+                                    <input class="form-control form-control-sm" name="quantity_input" id="quantity_input" type="text" pattern="[1-9]*" value="1">
                                     <div class="quantity_buttons">
                                         <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
                                         <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
@@ -189,7 +189,13 @@
                             <div class="button_container" style="margin-top: 5px">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-outline-info" type="submit" ><span class="loading d-none">...</span>Add to cart</button>
+
+                                        @if ($product->stock_quantity<1)
+                                            <button class="btn btn-outline-info" type="submit" disabled>Add to cart</button>
+                                        @else
+                                            <button class="btn btn-outline-info" type="submit" ><span class="loading d-none">...</span>Add to cart</button>
+                                        @endif
+                                        
                                         <a href="{{ route('add.wishlist',$product->id) }}" class="btn btn-outline-primary" type="button">Add to wishlist</a>
                                     </div>
                                 </div>
@@ -489,7 +495,7 @@
 
 <!-- Newsletter -->
 
-<div class="newsletter">
+{{-- <div class="newsletter">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -510,6 +516,28 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $('#add_cart_form').submit(function(e){
+        e.preventDefault();
+        $('.loading').removeClass('d-none');
+        // alert("done");
+        var url = $(this).att('action');
+        var request = $(this).serialize();
+        $.ajax({
+            url:url,
+            type:'post',
+            async:false,
+            data:request,
+            success:function(data){
+                toastr.success(data);
+                $('#add_cart_form')[0].reset();
+                $('.loading').addClass('d-none');
+                cart();
+            }
+        });
+    });
+</script>
 
 @endsection

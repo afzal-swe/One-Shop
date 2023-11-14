@@ -161,7 +161,7 @@ return [
          */
         Yajra\DataTables\DataTablesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        Darryldecode\Cart\CartServiceProvider::class,
+        // Darryldecode\Cart\CartServiceProvider::class,
         Brian2694\Toastr\ToastrServiceProvider::class,
 
         /*
@@ -188,7 +188,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         'Image' => Intervention\Image\Facades\Image::class,
-        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        // 'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
     ])->toArray(),
 

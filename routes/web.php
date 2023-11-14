@@ -48,6 +48,7 @@ Route::post('/review/store', [ReviewController::class, 'store'])->name('store.re
 Route::get('/wishlist/store/{id}', [ReviewController::class, 'store_wishlist'])->name('add.wishlist')->middleware(['auth', 'verified']);
 
 // Add to cart route section
-Route::get('/add/cart/{id}', [CartController::class, 'add_to_cart'])->name('add.to.cart')->middleware(['auth', 'verified']);
+Route::post('/add/cart/{id}', [CartController::class, 'add_to_cart'])->name('add.to.cart')->middleware(['auth', 'verified']);
+Route::post('/view-cart', [CartController::class, 'ViewCart'])->name('cart.view')->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';
